@@ -5,15 +5,28 @@ metadata:
   namespace: mishomepage
 data:
   settings.yaml: |
-    title: 🌿 MIS服務入口
+    title: 🌿 MIS 運維指揮中心
     theme: dark
     color: slate
-    background: "linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%)"
-    cardBlur: md
+    background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)"
+    cardBlur: sm
     layout:
-      主看板:
+      # 第一層：核心基礎設施 (3 欄編排)
+      核心基礎設施:
         style: row
-        columns: 5
+        columns: 3
+        groups:
+          - 防火牆與網路設備
+          - 虛擬化與雲端架構
+          - Kubernetes 叢集管理
+
+      # 第二層：運維工具與其他系統 (2 欄編排)
+      運維與設備管理:
+        style: row
+        columns: 2
+        groups:
+          - 運維監控與資產管理
+          - 其他管理系統
 
   widgets.yaml: |
     - greeting:
