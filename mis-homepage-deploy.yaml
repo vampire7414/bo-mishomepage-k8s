@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mishomepage
+  namespace: mishomepage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mishomepage
+  template:
+    metadata:
+      annotations:
+        # 修改為 version number 觸發 ArgoCD 更新以套用 PVC 掛載
+        config-hash: "v1"
+      labels:
+        app: mishomepage
+    spec:
+      containers:
+      - name: mishomepage
+        image: ghcr.io/gethomepage/homepage:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: HOMEPAGE_ALLOWED_HOSTS
+          value: "*"
+        volumeMounts:
+        # --- 設定檔掛載 (ConfigMap) ---
+        - name: mis-config-volume
+          mountPath: /app/config/settings.yaml
+          subPath: settings.yaml
+        - name: mis-config-volume
+          mountPath: /app/config/services.yaml
+          subPath: services.yaml
+        - name: mis-config-volume
+          mountPath: /app/config/widgets.yaml
+          subPath: widgets.yaml
+        - name: mis-config-volume
+          mountPath: /app/config/bookmarks.yaml
+          subPath: bookmarks.yaml
+        - name: mis-config-volume
+          mountPath: /app/config/custom.yaml
+          subPath: custom.yaml
+        - name: logs-volume
+          mountPath: /app/config/logs
+
+      volumes:
+      - name: mis-config-volume
+        configMap:
+          name: mis-homepage-config
+      - name: logs-volume
+        emptyDir: {}

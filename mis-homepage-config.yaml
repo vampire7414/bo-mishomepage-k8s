@@ -1,0 +1,126 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mis-homepage-config
+  namespace: mishomepage
+data:
+  settings.yaml: |
+    title: 🌿 MIS服務入口
+    theme: dark
+    color: slate
+    background: "linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%)"
+    cardBlur: md
+    layout:
+      主看板:
+        style: row
+        columns: 4
+
+  widgets.yaml: |
+    - greeting:
+        text: "MIS同仁辛苦了，別忘了吃零食休息一下！"
+        help: false
+    - datetime:
+        style: clock
+        locale: zh-TW
+        format:
+          dateStyle: "full"
+          timeStyle: "short"
+          hour12: true
+    - openmeteo:
+        label: "台中"
+        latitude: 24.1620
+        longitude: 120.6395
+        timezone: "Asia/Taipei"
+        units: metric
+        cache: 5
+
+  services.yaml: |
+    - 網路與安全設備 (Security & Network):
+        - FortiGate FW:
+            icon: mdi-fortinet
+            href: https://10.8.28.11:54088
+        - PaloAlto FW:
+            icon: mdi-shield-check
+            href: https://10.8.28.10
+        - Omada AP:
+            icon: mdi-wifi-cog
+            href: https://10.8.28.32
+            description: "TP-Link Omada Controller"
+        - Cloudflare:
+            icon: mdi-cloudflare
+            href: https://dash.cloudflare.com/login
+        - GoDaddy:
+            icon: mdi-web
+            href: https://www.godaddy.com/zh
+
+    - 虛擬化與雲端架構 (Infra):
+        - vCenter:
+            icon: mdi-server-network
+            href: https://10.70.90.10/
+        - ESXi-12:
+            icon: mdi-server
+            href: https://10.70.90.12/
+        - ESXi-16:
+            icon: mdi-server
+            href: https://10.70.90.16/
+        - Synology-244:
+            icon: mdi-nas
+            href: http://10.8.100.244:5000
+        - Synology-245:
+            icon: mdi-nas
+            href: http://10.8.100.245:5000
+
+    - Kubernetes 叢集管理:
+        - Rancher:
+            icon: mdi-kubernetes
+            href: https://k8s-lab2-rancher.eagle.corp/
+        - ArgoCD:
+            icon: mdi-git-circle
+            href: https://k8s-lab2-argocd.eagle.corp/
+        - Grafana:
+            icon: mdi-chart-areaspline
+            href: http://k8s-lab2-grafana.eagle.corp/
+        - Prometheus:
+            icon: mdi-fire
+            href: http://k8s-lab2-prometheus.eagle.corp/
+        - Jenkins:
+            icon: mdi-jenkins
+            href: http://k8s-lab2-jenkins.eagle.corp/
+        - LAM:
+            icon: mdi-account-cog
+            href: http://k8s-lab2-lam.eagle.corp/
+
+    - 運維監控與管理 (Ops):
+        - Uptime Kuma:
+            icon: mdi-heart-pulse
+            href: https://uptime-kuma.eagle.corp/
+        - LibreNMS:
+            icon: mdi-monitor-dashboard
+            href: http://librenms.eagle.corp/
+        - AssetTiger:
+            icon: mdi-tag-multiple
+            href: https://www.assettiger.com/dashboard
+            description: "資產管理系統"
+        - Bitwarden:
+            icon: mdi-safe-square-outline
+            href: https://vault.bitwarden.com/
+            description: "密碼庫"
+
+    - 其他辦公設備:
+        - PBX 電話系統:
+            icon: mdi-phone-voip
+            href: https://10.8.8.150:8088/
+            description: "Yeastar S20 EAGLE"
+        - Sharp 印表機:
+            icon: mdi-printer-settings
+            href: http://10.8.28.100
+            description: "MX-2651 管理頁面"
+        - AD Web-103:
+            icon: mdi-microsoft-windows
+            href: http://10.8.128.103/
+        - AD Web-105:
+            icon: mdi-microsoft-windows
+            href: http://10.8.128.105/
+
+  bookmarks.yaml: ""
+  custom.yaml: ""

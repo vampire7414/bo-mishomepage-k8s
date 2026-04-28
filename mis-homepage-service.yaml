@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mishomepage
+  namespace: mishomepage
+spec:
+  selector:
+    app: mishomepage
+  ports:
+    - port: 80          # ✔ 對外 80（跟你 ad-web 一樣）
+      targetPort: 3000  # ✔ 轉到 container 3000
+  type: ClusterIP
