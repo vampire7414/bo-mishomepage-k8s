@@ -11,15 +11,21 @@ data:
     background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)"
     cardBlur: sm
     layout:
-      # 第一排：自動抓取 services.yaml 前面 3 個群組
-      核心基礎設施:
-        style: row
-        columns: 3
-      # 第二排：自動抓取後面剩下的群組
-      運維與支援:
-        style: row
-        columns: 2
+      - 核心運維基礎設施: # 第一個區塊的標題
+          style: row
+          columns: 3
+          groups:
+            - 防火牆與網路設備
+            - 虛擬化與雲端架構
+            - Kubernetes 叢集管理
 
+      - 運維支援與周邊: # 第二個區塊的標題
+          style: row
+          columns: 2
+          groups:
+            - 運維監控與資產管理
+            - 其他管理系統
+              
   widgets.yaml: |
     - greeting:
         text: "MIS同仁辛苦了，別忘了吃零食休息一下！"
