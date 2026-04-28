@@ -13,7 +13,7 @@ data:
     layout:
       主看板:
         style: row
-        columns: 4
+        columns: 5
 
   widgets.yaml: |
     - greeting:
@@ -35,7 +35,7 @@ data:
         cache: 5
 
   services.yaml: |
-    - 網路與安全設備 (Security & Network):
+    - 防火牆與網路設備:
         - FortiGate FW:
             icon: mdi-fortinet
             href: https://10.8.28.11:54088
@@ -53,7 +53,7 @@ data:
             icon: mdi-web
             href: https://www.godaddy.com/zh
 
-    - 虛擬化與雲端架構 (Infra):
+    - 虛擬化與雲端架構:
         - vCenter:
             icon: mdi-server-network
             href: https://10.70.90.10/
@@ -90,7 +90,7 @@ data:
             icon: mdi-account-cog
             href: http://k8s-lab2-lam.eagle.corp/
 
-    - 運維監控與管理 (Ops):
+    - 運維監控與資產管理:
         - Uptime Kuma:
             icon: mdi-heart-pulse
             href: https://uptime-kuma.eagle.corp/
@@ -106,7 +106,7 @@ data:
             href: https://vault.bitwarden.com/
             description: "密碼庫"
 
-    - 其他辦公設備:
+    - 其他管理系統:
         - PBX 電話系統:
             icon: mdi-phone-voip
             href: https://10.8.8.150:8088/
