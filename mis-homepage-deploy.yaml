@@ -12,7 +12,7 @@ spec:
     metadata:
       annotations:
         # 修改為 version number 觸發 ArgoCD 更新以套用 PVC 掛載
-        config-hash: "v7"
+        config-hash: "v8"
       labels:
         app: mishomepage
     spec:

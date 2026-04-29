@@ -11,21 +11,13 @@ data:
     background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)"
     cardBlur: sm
     layout:
-      - 核心運維基礎設施: # 第一個區塊的標題
+      - 核心運維基礎設施:
           style: row
           columns: 3
-          groups:
-            - 防火牆與網路設備
-            - 虛擬化與雲端架構
-            - Kubernetes 叢集管理
-
-      - 運維支援與周邊: # 第二個區塊的標題
+      - 運維支援與周邊:
           style: row
           columns: 2
-          groups:
-            - 運維監控與資產管理
-            - 其他管理系統
-              
+
   widgets.yaml: |
     - greeting:
         text: "MIS同仁辛苦了，別忘了吃零食休息一下！"
@@ -46,93 +38,94 @@ data:
         cache: 5
 
   services.yaml: |
-    - 防火牆與網路設備:
-        - FortiGate FW:
-            icon: si-fortinet
-            href: https://10.8.28.11:54088
-        - PaloAlto FW:
-            icon: si-paloaltonetworks
-            href: https://10.8.28.10
-        - Omada AP:
-            icon: si-omadacloud
-            href: https://10.8.28.32
-            description: "TP-Link Omada Controller"
-        - Cloudflare:
-            icon: si-cloudflare
-            href: https://dash.cloudflare.com/login
-        - GoDaddy:
-            icon: si-godaddy
-            href: https://www.godaddy.com/zh
+    - 核心運維基礎設施:
+        - 防火牆與網路設備:
+            - FortiGate FW:
+                icon: si-fortinet
+                href: https://10.8.28.11:54088
+            - PaloAlto FW:
+                icon: si-paloaltonetworks
+                href: https://10.8.28.10
+            - Omada AP:
+                icon: si-omadacloud
+                href: https://10.8.28.32
+                description: "TP-Link Omada Controller"
+            - Cloudflare:
+                icon: si-cloudflare
+                href: https://dash.cloudflare.com/login
+            - GoDaddy:
+                icon: si-godaddy
+                href: https://www.godaddy.com/zh
 
-    - 虛擬化與雲端架構:
-        - vCenter:
-            icon: si-vmware
-            href: https://10.70.90.10/
-        - ESXi-12:
-            icon: mdi-server
-            href: https://10.70.90.12/
-        - ESXi-16:
-            icon: mdi-server
-            href: https://10.70.90.16/
-        - Synology-244:
-            icon: si-synology
-            href: http://10.8.100.244:5000
-        - Synology-245:
-            icon: si-synology
-            href: http://10.8.100.245:5000
+        - 虛擬化與雲端架構:
+            - vCenter:
+                icon: si-vmware
+                href: https://10.70.90.10/
+            - ESXi-12:
+                icon: mdi-server
+                href: https://10.70.90.12/
+            - ESXi-16:
+                icon: mdi-server
+                href: https://10.70.90.16/
+            - Synology-244:
+                icon: si-synology
+                href: http://10.8.100.244:5000
+            - Synology-245:
+                icon: si-synology
+                href: http://10.8.100.245:5000
 
-    - Kubernetes 叢集管理:
-        - Rancher:
-            icon: mdi-kubernetes
-            href: https://k8s-lab2-rancher.eagle.corp/
-        - ArgoCD:
-            icon: si-argo
-            href: https://k8s-lab2-argocd.eagle.corp/
-        - Grafana:
-            icon: si-grafana
-            href: http://k8s-lab2-grafana.eagle.corp/
-        - Prometheus:
-            icon: si-prometheus
-            href: http://k8s-lab2-prometheus.eagle.corp/
-        - Jenkins:
-            icon: si-jenkins
-            href: http://k8s-lab2-jenkins.eagle.corp/
-        - LAM:
-            icon: mdi-account-cog
-            href: http://k8s-lab2-lam.eagle.corp/
+        - Kubernetes 叢集管理:
+            - Rancher:
+                icon: mdi-kubernetes
+                href: https://k8s-lab2-rancher.eagle.corp/
+            - ArgoCD:
+                icon: si-argo
+                href: https://k8s-lab2-argocd.eagle.corp/
+            - Grafana:
+                icon: si-grafana
+                href: http://k8s-lab2-grafana.eagle.corp/
+            - Prometheus:
+                icon: si-prometheus
+                href: http://k8s-lab2-prometheus.eagle.corp/
+            - Jenkins:
+                icon: si-jenkins
+                href: http://k8s-lab2-jenkins.eagle.corp/
+            - LAM:
+                icon: mdi-account-cog
+                href: http://k8s-lab2-lam.eagle.corp/
 
-    - 運維監控與資產管理:
-        - Uptime Kuma:
-            icon: si-uptimekuma
-            href: https://uptime-kuma.eagle.corp/
-        - LibreNMS:
-            icon: mdi-monitor-dashboard
-            href: http://librenms.eagle.corp/
-        - AssetTiger:
-            icon: mdi-tag-multiple
-            href: https://www.assettiger.com/dashboard
-            description: "資產管理系統"
-        - Bitwarden:
-            icon: si-bitwarden
-            href: https://vault.bitwarden.com/
-            description: "密碼庫"
+    - 運維支援與周邊:
+        - 運維監控與資產管理:
+            - Uptime Kuma:
+                icon: si-uptimekuma
+                href: https://uptime-kuma.eagle.corp/
+            - LibreNMS:
+                icon: mdi-monitor-dashboard
+                href: http://librenms.eagle.corp/
+            - AssetTiger:
+                icon: mdi-tag-multiple
+                href: https://www.assettiger.com/dashboard
+                description: "資產管理系統"
+            - Bitwarden:
+                icon: si-bitwarden
+                href: https://vault.bitwarden.com/
+                description: "密碼庫"
 
-    - 其他管理系統:
-        - PBX 電話系統:
-            icon: mdi-phone-voip
-            href: https://10.8.8.150:8088/
-            description: "Yeastar S20 EAGLE"
-        - Sharp 印表機:
-            icon: mdi-printer-settings
-            href: http://10.8.28.100
-            description: "MX-2651 管理頁面"
-        - AD Web-103:
-            icon: mdi-microsoft-windows
-            href: http://10.8.128.103/
-        - AD Web-105:
-            icon: mdi-microsoft-windows
-            href: http://10.8.128.105/
+        - 其他管理系統:
+            - PBX 電話系統:
+                icon: mdi-phone-voip
+                href: https://10.8.8.150:8088/
+                description: "Yeastar S20 EAGLE"
+            - Sharp 印表機:
+                icon: mdi-printer-settings
+                href: http://10.8.28.100
+                description: "MX-2651 管理頁面"
+            - AD Web-103:
+                icon: mdi-microsoft-windows
+                href: http://10.8.128.103/
+            - AD Web-105:
+                icon: mdi-microsoft-windows
+                href: http://10.8.128.105/
 
   bookmarks.yaml: ""
   custom.yaml: ""
-
