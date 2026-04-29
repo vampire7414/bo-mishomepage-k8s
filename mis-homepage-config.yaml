@@ -14,9 +14,11 @@ data:
       - 核心運維基礎設施:
           style: row
           columns: 3
+          header: false # 加入這一行，隱藏第一個標題  
       - 運維支援與周邊:
           style: row
           columns: 2
+          header: false # 加入這一行，隱藏第一個標題
 
   widgets.yaml: |
     - greeting:
