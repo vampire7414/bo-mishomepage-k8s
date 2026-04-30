@@ -38,19 +38,19 @@ data:
         timezone: "Asia/Taipei"
         units: metric
         cache: 5
-     - kubernetes:
-         cluster:
-           show: true
-           cpu: true
-           memory: true
-           showLabel: true
-           label: "cluster"
-         nodes:
-           show: true
-           cpu: true
-           memory: true
-           showLabel: true
-
+    - kubernetes:
+        cluster:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          label: "cluster"
+        nodes:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true    
+          
   services.yaml: |
     - 核心運維基礎設施:
         - 防火牆與網路設備:
