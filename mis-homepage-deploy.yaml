@@ -1,3 +1,4 @@
+[root@k8s-lab2-master-1 mis-homepage]# cat mis-homepage-deploy.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,10 +13,11 @@ spec:
     metadata:
       annotations:
         # 更新 version 觸發重新部署
-        config-hash: "v5"
+        config-hash: "v6"
       labels:
         app: mishomepage
     spec:
+      serviceAccountName: homepage-admin # 讓 Pod 具備 homepage-admin 的權限 ---
       containers:
       - name: mishomepage
         image: ghcr.io/gethomepage/homepage:latest
@@ -53,3 +55,4 @@ spec:
           name: mis-homepage-config
       - name: logs-volume
         emptyDir: {}
+
