@@ -19,12 +19,14 @@ data:
           style: row
           columns: 2
           header: false
-          
+
+  # --- 根據官方文檔修正的核心部分 ---
   kubernetes.yaml: |
-    url: https://kubernetes.default.svc
+    mode: cluster
     allowInsecure: true
-    kubeconfig: null
-    
+    # 開啟自動服務發現 (Ingress)
+    ingress: true
+
   widgets.yaml: |
     - greeting:
         text: "MIS同仁辛苦了，別忘了吃零食休息一下！"

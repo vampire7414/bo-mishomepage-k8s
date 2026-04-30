@@ -11,12 +11,11 @@ spec:
   template:
     metadata:
       annotations:
-        # 更新 version 觸發重新部署
-        config-hash: "v8"
+        config-hash: "v8" # 確保 apply 時會重新觸發 Pod
       labels:
         app: mishomepage
     spec:
-      serviceAccountName: homepage-admin # 確保使用高權限 SA
+      serviceAccountName: homepage-admin # 這是關鍵，必須對應有權限的 SA
       containers:
       - name: mishomepage
         image: ghcr.io/gethomepage/homepage:latest
@@ -26,11 +25,9 @@ spec:
         env:
         - name: HOMEPAGE_ALLOWED_HOSTS
           value: "*"
-        # 解決 500 Error 的關鍵：忽略 TLS 驗證
         - name: NODE_TLS_REJECT_UNAUTHORIZED
           value: "0"
         volumeMounts:
-        # --- 設定檔掛載 (ConfigMap) ---
         - name: mis-config-volume
           mountPath: /app/config/settings.yaml
           subPath: settings.yaml
@@ -46,7 +43,7 @@ spec:
         - name: mis-config-volume
           mountPath: /app/config/custom.yaml
           subPath: custom.yaml
-        # --- 強制覆蓋 kubernetes.yaml，防止範例檔自動生成 ---
+        # 強制掛載 kubernetes.yaml 避開自動生成機制
         - name: mis-config-volume
           mountPath: /app/config/kubernetes.yaml
           subPath: kubernetes.yaml
