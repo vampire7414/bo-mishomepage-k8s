@@ -43,14 +43,10 @@ data:
           show: true
           cpu: true
           memory: true
-          showLabel: true
-          label: "K8s-Lab2"
         nodes:
           show: true
           cpu: true
           memory: true
-          showLabel: true
-        # --- 使用靜態 Token 模式 ---
         url: https://kubernetes.default.svc
         key: "eyJhbGciOiJSUzI1NiIsImtpZCI6ImtLeHBnQy1KLXJoSDE5R0NkSl9Za0dSRnlZY0dSM3UzTU1rNUNuS1A3QUkifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJtaXNob21lcGFnZSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJob21lcGFnZS1hZG1pbi10b2tlbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJob21lcGFnZS1hZG1pbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6ImVjMjAzMDFhLTg0MjItNDMyNS04MDc0LWJhMjYzZDI4ZTM4OSIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDptaXNob21lcGFnZTpob21lcGFnZS1hZG1pbiJ9.XvMR7tKSFRavbpHlUp2_bQlR57KfKdbTsFLLB1v04QFYaYwDEljjv96HHmHWVDT7WDZoDfDYGNwhP98m-75u9IqRZEnLQDBRdxprve25NA-H3BUtfipyKcSc5a4T7szzlPBaR5lTYNhDQi_4Xvzx4M9rTCQl0Q2LvhE-eKhpbEmg8zN02VjvPx4lBDq2BJBqB1yZ-Rw1Pd422FFYXZp5F42dRihCW96Ir0y3-g6rFAflmNZzDG6_hEsYqLEpGy27e1p98PglYquQg8iyYWeR1DazA6qTJsIcXfSRqlef9ux3ZShzG0b87bseAqcQ7U9j4-f9hN5F9nCmL21GHN9aEg"
         allowInsecure: true
