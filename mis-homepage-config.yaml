@@ -76,7 +76,7 @@ data:
                 href: http://k8s-lab2-grafana.eagle.corp/
                 widget:
                   type: grafana
-                  version: 2
+                  version: 1
                   url: http://k8s-lab2-grafana.eagle.corp
                   username: admin
                   password: '!QAZxsw2'
