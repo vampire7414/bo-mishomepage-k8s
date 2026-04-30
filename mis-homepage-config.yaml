@@ -113,6 +113,8 @@ data:
             - Synology-244:
                 icon: si-synology
                 href: http://10.8.100.244:5000
+                statusStyle: "dot"  
+                ping: 10.8.128.201
                 widget:
                   type: diskstation
                   url: http://10.8.100.244:5000
@@ -121,6 +123,8 @@ data:
             - Synology-245:
                 icon: si-synology
                 href: http://10.8.100.245:5000
+                statusStyle: "dot"  
+                ping: 10.8.128.201
                 widget:
                   type: diskstation
                   url: http://10.8.100.245:5000
