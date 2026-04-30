@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       annotations:
-        config-hash: "v9" # 確保 apply 時會重新觸發 Pod
+        config-hash: "v10" # 確保 apply 時會重新觸發 Pod
       labels:
         app: mishomepage
     spec:
