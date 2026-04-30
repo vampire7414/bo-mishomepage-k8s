@@ -77,7 +77,7 @@ data:
                 widget:
                   type: grafana
                   version: 2
-                  url: http://k8s-lab2-grafana.eagle.corp/
+                  url: http://k8s-lab2-grafana.eagle.corp
                   username: admin
                   password: '!QAZxsw2'
             - Prometheus:
