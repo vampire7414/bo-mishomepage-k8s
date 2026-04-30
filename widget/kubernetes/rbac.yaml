@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: homepage-kubernetes-reader
+rules:
+  - apiGroups: [""]
+    resources: ["nodes", "pods", "namespaces"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["metrics.k8s.io"] # 用來讀取 CPU/Memory
+    resources: ["nodes", "pods"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: homepage-kubernetes-reader-binding
+subjects:
+  - kind: ServiceAccount
+    name: default # 如果你的 deployment 沒指定 SA，預設就是 default
+    namespace: mishomepage
+roleRef:
+  kind: ClusterRole
+  name: homepage-kubernetes-reader
+  apiGroup: rbac.authorization.k8s.io

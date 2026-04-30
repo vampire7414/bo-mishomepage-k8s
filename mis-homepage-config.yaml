@@ -14,7 +14,7 @@ data:
       - 核心運維基礎設施:
           style: row
           columns: 3
-          header: false # 加入這一行，隱藏第一個標題  
+          header: false # 加入這一行，隱藏第一個標題
       - 運維支援與周邊:
           style: row
           columns: 2
@@ -38,7 +38,19 @@ data:
         timezone: "Asia/Taipei"
         units: metric
         cache: 5
-
+    - kubernetes:
+        cluster:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          label: "K8s-Lab2"
+        nodes:
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
+          
   services.yaml: |
     - 核心運維基礎設施:
         - 防火牆與網路設備:
@@ -131,3 +143,4 @@ data:
 
   bookmarks.yaml: ""
   custom.yaml: ""
+
