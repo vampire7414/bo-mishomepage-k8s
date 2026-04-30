@@ -20,11 +20,9 @@ data:
           columns: 2
           header: false
 
-  # --- 根據官方文檔修正的核心部分 ---
   kubernetes.yaml: |
     mode: cluster
     allowInsecure: true
-    # 開啟自動服務發現 (Ingress)
     ingress: true
 
   widgets.yaml: |
@@ -62,11 +60,29 @@ data:
     - 核心運維基礎設施:
         - Kubernetes 叢集管理:
             - ArgoCD:
-              widget:
-                type: argocd
-                url: https://k8s-lab2-argocd.eagle.corp
-                key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJob21lcGFnZS1yZWFkOmFwaUtleSIsIm5iZiI6MTc3NzUzNTc2NiwiaWF0IjoxNzc3NTM1NzY2LCJqdGkiOiI2N2MwYTRkMy02ZjhjLTQzOTMtYTg5NC01NzA1ZWQxMGVjMjMifQ.MAJfsPwRZaS6J_fvAsQFbUdvCTwBJLRJymBJP2p0Q2c"
-                allowInsecure: true 
+                icon: si-argo
+                href: https://k8s-lab2-argocd.eagle.corp/
+                description: "應用程式持續交付"
+                widget:
+                  type: argocd
+                  url: https://k8s-lab2-argocd.eagle.corp
+                  key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJob21lcGFnZS1yZWFkOmFwaUtleSIsIm5iZiI6MTc3NzUzNTc2NiwiaWF0IjoxNzc3NTM1NzY2LCJqdGkiOiI2N2MwYTRkMy02ZjhjLTQzOTMtYTg5NC01NzA1ZWQxMGVjMjMifQ.MAJfsPwRZaS6J_fvAsQFbUdvCTwBJLRJymBJP2p0Q2c"
+                  allowInsecure: true
+            - Rancher:
+                icon: mdi-kubernetes
+                href: https://k8s-lab2-rancher.eagle.corp/
+            - Grafana:
+                icon: si-grafana
+                href: http://k8s-lab2-grafana.eagle.corp/
+            - Prometheus:
+                icon: si-prometheus
+                href: http://k8s-lab2-prometheus.eagle.corp/
+            - Jenkins:
+                icon: si-jenkins
+                href: http://k8s-lab2-jenkins.eagle.corp/
+            - LAM:
+                icon: mdi-account-cog
+                href: http://k8s-lab2-lam.eagle.corp/
         - 防火牆與網路設備:
             - FortiGate FW:
                 icon: si-fortinet
@@ -100,25 +116,6 @@ data:
             - Synology-245:
                 icon: si-synology
                 href: http://10.8.100.245:5000
-        - Kubernetes 叢集管理:
-            - Rancher:
-                icon: mdi-kubernetes
-                href: https://k8s-lab2-rancher.eagle.corp/
-            - ArgoCD:
-                icon: si-argo
-                href: https://k8s-lab2-argocd.eagle.corp/
-            - Grafana:
-                icon: si-grafana
-                href: http://k8s-lab2-grafana.eagle.corp/
-            - Prometheus:
-                icon: si-prometheus
-                href: http://k8s-lab2-prometheus.eagle.corp/
-            - Jenkins:
-                icon: si-jenkins
-                href: http://k8s-lab2-jenkins.eagle.corp/
-            - LAM:
-                icon: mdi-account-cog
-                href: http://k8s-lab2-lam.eagle.corp/
     - 運維支援與周邊:
         - 運維監控與資產管理:
             - Uptime Kuma:
