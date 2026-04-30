@@ -12,7 +12,7 @@ spec:
     metadata:
       annotations:
         # 更新 version 觸發重新部署
-        config-hash: "v4"
+        config-hash: "v5"
       labels:
         app: mishomepage
     spec:
