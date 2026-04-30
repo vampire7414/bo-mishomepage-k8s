@@ -116,14 +116,16 @@ data:
                 widget:
                   type: diskstation
                   url: http://10.8.100.244:5000
-                  key: "ZaKQlJgYNFJ35GQoGA__ouPHfsyR3m1Cu15-dL8KzmEZRv4qe-buIX1DQkwQOW4dY-CfUnibnFKxQcV7T3__LM"
+                  username: hsadmin
+                  password: 'm:i(t''G4'
             - Synology-245:
                 icon: si-synology
                 href: http://10.8.100.245:5000
                 widget:
                   type: diskstation
                   url: http://10.8.100.245:5000
-                  key: "VIi7aRvLlscvkKkCqd1nLOM_yq3Y6KMmvKac54nQ3T8kfR_ack5yFxCcK76ZwegFdEj58suVdZLbSuszMHft-4"
+                  username: hsadmin
+                  password: 'm:i(t''G4'
     - 運維支援與周邊:
         - 運維監控與資產管理:
             - Uptime Kuma:
