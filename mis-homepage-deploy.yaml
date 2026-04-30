@@ -1,4 +1,3 @@
-[root@k8s-lab2-master-1 mis-homepage]# cat mis-homepage-deploy.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,7 +16,7 @@ spec:
       labels:
         app: mishomepage
     spec:
-      serviceAccountName: homepage-admin # 讓 Pod 具備 homepage-admin 的權限 ---
+      serviceAccountName: homepage-admin # 確保使用高權限 SA
       containers:
       - name: mishomepage
         image: ghcr.io/gethomepage/homepage:latest
@@ -27,7 +26,7 @@ spec:
         env:
         - name: HOMEPAGE_ALLOWED_HOSTS
           value: "*"
-        # --- 解決 500 Error 的核心關鍵：忽略自簽憑證驗證 ---
+        # 解決 500 Error 的關鍵：忽略 TLS 驗證
         - name: NODE_TLS_REJECT_UNAUTHORIZED
           value: "0"
         volumeMounts:
@@ -47,6 +46,10 @@ spec:
         - name: mis-config-volume
           mountPath: /app/config/custom.yaml
           subPath: custom.yaml
+        # --- 強制覆蓋 kubernetes.yaml，防止範例檔自動生成 ---
+        - name: mis-config-volume
+          mountPath: /app/config/kubernetes.yaml
+          subPath: kubernetes.yaml
         - name: logs-volume
           mountPath: /app/config/logs
       volumes:
@@ -55,4 +58,3 @@ spec:
           name: mis-homepage-config
       - name: logs-volume
         emptyDir: {}
-
