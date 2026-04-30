@@ -74,12 +74,6 @@ data:
             - Grafana:
                 icon: si-grafana
                 href: http://k8s-lab2-grafana.eagle.corp/
-                widget:
-                  type: grafana
-                  version: 1
-                  url: http://k8s-lab2-grafana.eagle.corp
-                  username: admin
-                  password: '!QAZxsw2'
             - Prometheus:
                 icon: si-prometheus
                 href: http://k8s-lab2-prometheus.eagle.corp/
@@ -119,7 +113,7 @@ data:
             - Synology-244:
                 icon: si-synology
                 href: http://10.8.100.244:5000
-                statusStyle: dot
+                statusStyle: "dot"  
                 ping: 10.8.100.244
                 widget:
                   type: diskstation
@@ -129,7 +123,7 @@ data:
             - Synology-245:
                 icon: si-synology
                 href: http://10.8.100.245:5000
-                statusStyle: dot
+                statusStyle: "dot"  
                 ping: 10.8.100.245
                 widget:
                   type: diskstation
