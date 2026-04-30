@@ -8,6 +8,7 @@ data:
     title: 🌿 MIS 運維指揮中心
     theme: dark
     color: slate
+    background: "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)"
     cardBlur: sm
     layout:
       - 核心運維基礎設施:
@@ -46,10 +47,10 @@ data:
         cache: 5
     - kubernetes:
         cluster:
-          show: false
-          cpu: false
-          memory: false
-          showLabel: false
+          show: true
+          cpu: true
+          memory: true
+          showLabel: true
           label: "K8s-Lab2"
         nodes:
           show: true
@@ -59,6 +60,13 @@ data:
 
   services.yaml: |
     - 核心運維基礎設施:
+        - Kubernetes 叢集管理:
+            - ArgoCD:
+              widget:
+                type: argocd
+                url: https://k8s-lab2-argocd.eagle.corp
+                key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJob21lcGFnZS1yZWFkOmFwaUtleSIsIm5iZiI6MTc3NzUzNTc2NiwiaWF0IjoxNzc3NTM1NzY2LCJqdGkiOiI2N2MwYTRkMy02ZjhjLTQzOTMtYTg5NC01NzA1ZWQxMGVjMjMifQ.MAJfsPwRZaS6J_fvAsQFbUdvCTwBJLRJymBJP2p0Q2c"
+                allowInsecure: true 
         - 防火牆與網路設備:
             - FortiGate FW:
                 icon: si-fortinet
