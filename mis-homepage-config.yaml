@@ -50,6 +50,10 @@ data:
           cpu: true
           memory: true
           showLabel: true
+        # --- 解決 API Error 的核心關鍵 ---
+        url: https://kubernetes.default.svc  # 強制走內部專用路徑
+        kubeconfig: null                      # 確保使用 Pod 內的 ServiceAccount Token
+        allowInsecure: true                   # 忽略自簽憑證警告 (沒加這行必噴 API Error)
           
   services.yaml: |
     - 核心運維基礎設施:
@@ -143,4 +147,3 @@ data:
 
   bookmarks.yaml: ""
   custom.yaml: ""
-
