@@ -120,10 +120,10 @@ data:
                   url: http://10.8.128.111:61210/stats 
                   refreshInterval: 10000 
                   mappings: 
-                    - field: "10.70.90.12.cpu"
+                    - field: '["10.70.90.12"].cpu' # 使用陣列路徑寫法避開點號
                       label: CPU
                       format: percent
-                    - field: "10.70.90.12.mem" 
+                    - field: '["10.70.90.12"].mem'
                       label: MEM
                       format: percent
             - ESXi-16:
@@ -134,10 +134,10 @@ data:
                   url: http://10.8.128.111:61210/stats 
                   refreshInterval: 10000 
                   mappings: 
-                    - field: "10.70.90.16.cpu"
+                    - field: '["10.70.90.16"].cpu'
                       label: CPU
                       format: percent
-                    - field: "10.70.90.16.mem" 
+                    - field: '["10.70.90.16"].mem'
                       label: MEM
                       format: percent
             - Synology-244:
