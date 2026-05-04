@@ -87,12 +87,18 @@ data:
             - FortiGate FW:
                 icon: si-fortinet
                 href: https://10.8.28.11:54088
+                statusStyle: "dot"  
+                ping: 10.8.28.11
             - PaloAlto FW:
                 icon: si-paloaltonetworks
                 href: https://10.8.28.10
+                statusStyle: "dot"  
+                ping: 10.8.28.10
             - Omada AP:
                 icon: si-omadacloud
                 href: https://10.8.28.32
+                statusStyle: "dot"  
+                ping: 10.8.28.32
                 description: "TP-Link Omada Controller"
             - Cloudflare:
                 icon: si-cloudflare
@@ -104,12 +110,18 @@ data:
             - vCenter:
                 icon: si-vmware
                 href: https://10.70.90.10/
+                statusStyle: "dot"  
+                ping: 10.70.90.10
             - ESXi-12:
                 icon: mdi-server
                 href: https://10.70.90.12/
+                statusStyle: "dot"  
+                ping: 10.70.90.12
             - ESXi-16:
                 icon: mdi-server
                 href: https://10.70.90.16/
+                statusStyle: "dot"  
+                ping: 10.70.90.16
             - Synology-244:
                 icon: si-synology
                 href: http://10.8.100.244:5000
@@ -150,10 +162,14 @@ data:
             - PBX 電話系統:
                 icon: mdi-phone-voip
                 href: https://10.8.8.150:8088/
+                statusStyle: "dot"  
+                ping: 10.8.8.150
                 description: "Yeastar S20 EAGLE"
             - Sharp 印表機:
                 icon: mdi-printer-settings
                 href: http://10.8.28.100
+                statusStyle: "dot"  
+                ping: 10.8.28.100
                 description: "MX-2651 管理頁面"
             - AD Web-103:
                 icon: mdi-microsoft-windows
