@@ -117,7 +117,7 @@ data:
                 href: https://10.70.90.12/
                 widget: 
                   type: customapi 
-                  url: http://10.8.128.112:61210/stats 
+                  url: http://10.8.128.111:61210/stats 
                   refreshInterval: 10000 
                   mappings: 
                     - field: "10.70.90.12.cpu"
@@ -131,7 +131,7 @@ data:
                 href: https://10.70.90.16/
                 widget: 
                   type: customapi 
-                  url: http://10.8.128.112:61210/stats 
+                  url: http://10.8.128.111:61210/stats 
                   refreshInterval: 10000 
                   mappings: 
                     - field: "10.70.90.16.cpu"
