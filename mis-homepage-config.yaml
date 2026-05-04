@@ -115,6 +115,8 @@ data:
             - ESXi-12:
                 icon: mdi-server
                 href: https://10.70.90.12/
+                statusStyle: "dot"  
+                ping: 10.70.90.12
                 widget: 
                   type: customapi 
                   url: http://10.8.128.111:61210/stats 
@@ -129,6 +131,8 @@ data:
             - ESXi-16:
                 icon: mdi-server
                 href: https://10.70.90.16/
+                statusStyle: "dot"  
+                ping: 10.70.90.16
                 widget: 
                   type: customapi 
                   url: http://10.8.128.111:61210/stats 
