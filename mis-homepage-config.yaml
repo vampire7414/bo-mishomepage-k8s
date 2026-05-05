@@ -70,6 +70,19 @@ data:
             - Rancher:
                 icon: mdi-kubernetes
                 href: https://k8s-lab2-rancher.eagle.corp/
+                widget:
+                  type: customapi
+                  url: http://10.8.128.111:61211/workloads
+                  refreshInterval: 10000
+                  mappings:
+                    - field: ns_count
+                      label: Namespaces
+                    - field: pod_status
+                      label: Pods (執行/完成)
+                    - field: workload_counts
+                      label: D / STS / DS
+                    - field: pod_health
+                      label: 叢集健康度
             - Grafana:
                 icon: si-grafana
                 href: http://k8s-lab2-grafana.eagle.corp/
@@ -86,17 +99,17 @@ data:
             - FortiGate FW:
                 icon: si-fortinet
                 href: https://10.8.28.11:54088
-                statusStyle: "dot"  
+                statusStyle: "dot"
                 ping: 10.8.28.11
             - PaloAlto FW:
                 icon: si-paloaltonetworks
                 href: https://10.8.28.10
-                statusStyle: "dot"  
+                statusStyle: "dot"
                 ping: 10.8.28.10
             - Omada AP:
                 icon: si-omadacloud
                 href: https://10.8.28.32
-                statusStyle: "dot"  
+                statusStyle: "dot"
                 ping: 10.8.28.32
                 description: "TP-Link Omada Controller"
             - Cloudflare:
@@ -109,18 +122,18 @@ data:
             - vCenter:
                 icon: si-vmware
                 href: https://10.70.90.10/
-                statusStyle: "dot"  
+                statusStyle: "dot"
                 ping: 10.70.90.10
             - ESXi-12:
                 icon: mdi-server
                 href: https://10.70.90.12/
-                statusStyle: "dot"  
+                statusStyle: "dot"
                 ping: 10.70.90.12
-                widget: 
-                  type: customapi 
-                  url: http://10.8.128.111:61210/stats 
-                  refreshInterval: 10000 
-                  mappings: 
+                widget:
+                  type: customapi
+                  url: http://10.8.128.111:61210/stats
+                  refreshInterval: 10000
+                  mappings:
                     - field: esxi_10_70_90_12.cpu
                       label: CPU
                       format: percent
@@ -130,13 +143,13 @@ data:
             - ESXi-16:
                 icon: mdi-server
                 href: https://10.70.90.16/
-                statusStyle: "dot"  
+                statusStyle: "dot"
                 ping: 10.70.90.16
-                widget: 
-                  type: customapi 
-                  url: http://10.8.128.111:61210/stats 
-                  refreshInterval: 10000 
-                  mappings: 
+                widget:
+                  type: customapi
+                  url: http://10.8.128.111:61210/stats
+                  refreshInterval: 10000
+                  mappings:
                     - field: esxi_10_70_90_16.cpu
                       label: CPU
                       format: percent
@@ -146,7 +159,7 @@ data:
             - Synology-244:
                 icon: si-synology
                 href: http://10.8.100.244:5000
-                statusStyle: "dot"  
+                statusStyle: "dot"
                 ping: 10.8.100.244
                 widget:
                   type: diskstation
@@ -156,7 +169,7 @@ data:
             - Synology-245:
                 icon: si-synology
                 href: http://10.8.100.245:5000
-                statusStyle: "dot"  
+                statusStyle: "dot"
                 ping: 10.8.100.245
                 widget:
                   type: diskstation
@@ -183,13 +196,13 @@ data:
             - PBX 電話系統:
                 icon: mdi-phone-voip
                 href: https://10.8.8.150:8088/
-                statusStyle: "dot"  
+                statusStyle: "dot"
                 ping: 10.8.8.150
                 description: "Yeastar S20 EAGLE"
             - Sharp 印表機:
                 icon: mdi-printer-settings
                 href: http://10.8.28.100
-                statusStyle: "dot"  
+                statusStyle: "dot"
                 ping: 10.8.28.100
                 description: "MX-2651 管理頁面"
             - AD Web-103:
@@ -201,3 +214,4 @@ data:
 
   bookmarks.yaml: ""
   custom.yaml: ""
+
