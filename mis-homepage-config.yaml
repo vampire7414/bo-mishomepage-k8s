@@ -76,9 +76,9 @@ data:
                   refreshInterval: 10000
                   mappings:
                     - field: ns_count
-                      label: Namespaces
+                      label: 命名空間 (NS)
                     - field: pod_status
-                      label: Pods (執行/完成)
+                      label: Pods (Run/Suc)
                     - field: workload_counts
                       label: D / STS / DS
                     - field: pod_health
@@ -180,7 +180,20 @@ data:
         - 運維監控與資產管理:
             - Uptime Kuma:
                 icon: si-uptimekuma
-                href: https://uptime-kuma.eagle.corp/
+                href: https://uptime-kuma.eagle.corp/status/server-status
+                widget:
+                  type: uptimekuma
+                  url: https://uptime-kuma.eagle.corp
+                  slug: server-status
+                  refreshInterval: 10000
+                  mappings:
+                    - field: up
+                      label: 在線
+                    - field: down
+                      label: 異常
+                    - field: uptime
+                      label: 可用率
+                      format: percent
             - LibreNMS:
                 icon: mdi-monitor-dashboard
                 href: http://librenms.eagle.corp/
@@ -214,4 +227,3 @@ data:
 
   bookmarks.yaml: ""
   custom.yaml: ""
-
