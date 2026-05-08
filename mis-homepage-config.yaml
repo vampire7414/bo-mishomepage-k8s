@@ -50,6 +50,7 @@ data:
                 id: argocd-card
                 icon: si-argo
                 href: https://k8s-lab2-argocd.eagle.corp/
+                description: "應用程式持續交付"
                 widget:
                   type: argocd
                   url: https://k8s-lab2-argocd.eagle.corp
@@ -89,17 +90,21 @@ data:
                 id: fortigate-card
                 icon: si-fortinet
                 href: https://10.8.28.11:54088
+                statusStyle: "dot"
                 ping: 10.8.28.11
             - PaloAlto FW:
                 id: paloalto-card
                 icon: si-paloaltonetworks
                 href: https://10.8.28.10
+                statusStyle: "dot"
                 ping: 10.8.28.10
             - Omada AP:
                 id: omada-card
                 icon: si-omadacloud
                 href: https://10.8.28.32
+                statusStyle: "dot"
                 ping: 10.8.28.32
+                description: "TP-Link Omada Controller"
             - Cloudflare:
                 id: cloudflare-card
                 icon: si-cloudflare
@@ -113,11 +118,13 @@ data:
                 id: vcenter-card
                 icon: si-vmware
                 href: https://10.70.90.10/
+                statusStyle: "dot"
                 ping: 10.70.90.10
             - ESXi-12:
                 id: esxi12-card
                 icon: mdi-server
                 href: https://10.70.90.12/
+                statusStyle: "dot"
                 ping: 10.70.90.12
                 widget:
                   type: customapi
@@ -129,6 +136,7 @@ data:
                 id: esxi16-card
                 icon: mdi-server
                 href: https://10.70.90.16/
+                statusStyle: "dot"
                 ping: 10.70.90.16
                 widget:
                   type: customapi
@@ -140,6 +148,7 @@ data:
                 id: nas244-card
                 icon: si-synology
                 href: http://10.8.100.244:5000
+                statusStyle: "dot"
                 widget:
                   type: diskstation
                   url: http://10.8.100.244:5000
@@ -149,6 +158,7 @@ data:
                 id: nas245-card
                 icon: si-synology
                 href: http://10.8.100.245:5000
+                statusStyle: "dot"
                 widget:
                   type: diskstation
                   url: http://10.8.100.245:5000
@@ -177,21 +187,27 @@ data:
                 id: assettiger-card
                 icon: mdi-tag-multiple
                 href: https://www.assettiger.com/dashboard
+                description: "資產管理系統"
             - Bitwarden:
                 id: bitwarden-card
                 icon: si-bitwarden
                 href: https://vault.bitwarden.com/
+                description: "密碼庫"
         - 其他管理系統:
             - PBX 電話系統:
                 id: pbx-card
                 icon: mdi-phone-voip
                 href: https://10.8.8.150:8088/
+                statusStyle: "dot"
                 ping: 10.8.8.150
+                description: "Yeastar S20 EAGLE"
             - Sharp 印表機:
                 id: printer-card
                 icon: mdi-printer-settings
                 href: http://10.8.28.100
+                statusStyle: "dot"
                 ping: 10.8.28.100
+                description: "MX-2651 管理頁面"
             - AD Web-103:
                 id: ad103-card
                 icon: mdi-microsoft-windows
@@ -202,20 +218,26 @@ data:
                 href: http://10.8.128.105/
 
   custom.css: |
-    /* --- 1. 全域滾輪隱藏 (讓介面更像原生 App) --- */
+    /* --- 1. 全域滾輪隱藏 --- */
     ::-webkit-scrollbar { display: none; }
     body { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* --- 2. 圓角主樣式 (Master Rounded Corners) --- */
+    /* --- 2. 圓角與基礎質感 (增加毛玻璃與細邊框) --- */
     .service-card, .bookmark-card, .group-header,
     div[id$="-card"], div[id$="-card"] > div,
     div[class*="rounded-lg"] {
-        border-radius: 25px !important; /* Reddit 原作者風格的超圓潤邊角 */
+        border-radius: 25px !important;
         overflow: hidden !important;
         isolation: isolate !important;
     }
 
-    /* --- 3. 卡片著色容器設定 (對應你的 MIS ID) --- */
+    .service-card {
+        background-color: rgba(255, 255, 255, 0.02) !important;
+        backdrop-filter: blur(10px) !important; /* 增加通透感 */
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    /* --- 3. 卡片著色容器設定 --- */
     #argocd-card, #rancher-card, #grafana-card, #prometheus-card, #jenkins-card, #lam-card,
     #fortigate-card, #paloalto-card, #omada-card, #cloudflare-card, #godaddy-card,
     #vcenter-card, #esxi12-card, #esxi16-card, #nas244-card, #nas245-card,
@@ -225,79 +247,85 @@ data:
         background-color: transparent !important;
     }
 
-    /* 建立彩色底層 (偽元素) */
+    /* 關鍵：降低透明度 (0.35 -> 0.15) 讓顏色不刺眼 */
     [id$="-card"]::before {
         content: "";
         position: absolute;
-        top: 2px;
-        left: 2px;
-        right: 2px;
-        bottom: 6px; /* 原作者特有的偏移量，營造層次感 */
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 4px; /* 底部偏移營造立體感 */
         z-index: 0;
         border-radius: 23px !important;
-        opacity: 0.35; /* 顏色深度依原作者設定 */
+        opacity: 0.15 !important; 
     }
 
-    /* --- 4. 服務顏色分配 (改為 MIS 相關色彩) --- */
-    /* K8s 與 持續整合 (紫色系) */
-    #argocd-card::before, #rancher-card::before, #jenkins-card::before { background-color: #AA5CC3 !important; }
-    /* 監控與分析 (藍色系) */
-    #grafana-card::before, #prometheus-card::before, #librenms-card::before { background-color: #25C1FF !important; }
-    /* 網路安全 (紅色系) */
-    #fortigate-card::before, #paloalto-card::before, #cloudflare-card::before { background-color: #ff3d00 !important; }
-    /* 虛擬化平台 (橘色/青色系) */
-    #vcenter-card::before, #esxi12-card::before, #esxi16-card::before { background-color: #ff7b00 !important; }
-    /* 儲存與監控狀態 (綠色系) */
-    #nas244-card::before, #nas245-card::before, #uptime-card::before { background-color: #00C655 !important; }
-    /* 其他管理設備 (藍灰色) */
-    #pbx-card::before, #printer-card::before, #ad103-card::before, #ad105-card::before, #bitwarden-card::before { background-color: #6aabbf !important; }
+    /* --- 4. 服務顏色分配 (改為更高質感的色偏) --- */
+    /* 紫色 (CI/CD) */
+    #argocd-card::before, #rancher-card::before, #jenkins-card::before, #lam-card::before { background-color: #a855f7 !important; }
+    /* 藍色 (監控) */
+    #grafana-card::before, #prometheus-card::before, #librenms-card::before { background-color: #3b82f6 !important; }
+    /* 紅色 (網路) */
+    #fortigate-card::before, #paloalto-card::before, #cloudflare-card::before { background-color: #ef4444 !important; }
+    /* 橘色 (虛擬化) */
+    #vcenter-card::before, #esxi12-card::before, #esxi16-card::before { background-color: #f59e0b !important; }
+    /* 綠色 (儲存/狀態) */
+    #nas244-card::before, #nas245-card::before, #uptime-card::before { background-color: #10b981 !important; }
+    /* 灰藍 (周邊) */
+    #pbx-card::before, #printer-card::before, #ad103-card::before, #ad105-card::before, #bitwarden-card::before, #assettiger-card::before { background-color: #94a3b8 !important; }
 
-    /* --- 5. 狀態標籤與 PING 重新定位 (原作者最精華部分) --- */
-    .service-card > div { position: relative; z-index: 1; }
+    /* --- 5. 狀態標籤微縮 (讓畫面更緊湊精緻) --- */
+    .service-card > div { position: relative; z-index: 1; padding: 0.8rem !important; }
 
     .service-ping .ping-status {
-        background-color: rgba(255, 255, 255, 0.08) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-radius: 8px !important;
-        padding: 2px 6px !important;
+        background-color: rgba(0, 0, 0, 0.25) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 6px !important;
+        padding: 1px 5px !important;
         position: absolute !important;
         top: 10px !important;
-        right: 12px !important;
+        right: 10px !important;
     }
 
     .service-ping .ping-status div {
-        font-size: 9px !important;
-        font-weight: 800 !important;
-        text-transform: uppercase !important;
+        font-size: 8px !important;
+        font-weight: 900 !important;
+        letter-spacing: 0.02em;
     }
 
-    /* --- 6. 頂部導航欄美化 (Tabs) --- */
+    /* --- 6. 頂部導航藥丸樣式 --- */
     #tabs ul {
-        background-color: rgba(58, 58, 58, 0.2) !important;
+        background-color: rgba(255, 255, 255, 0.05) !important;
         border-radius: 50px !important;
         padding: 4px !important;
-        width: fit-content !important;
-        margin: 0 auto !important;
+        margin: 0 auto 1.5rem auto !important;
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
     }
 
     #tabs ul li button[aria-selected="true"] {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        color: #6aabbf !important;
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        color: #fff !important;
         border-radius: 50px !important;
-        font-weight: bold !important;
     }
 
-    /* --- 7. 系統監控漸層條 (System Monitor Gradient) --- */
+    /* --- 7. 進度條優化 --- */
     .information-widget-resource div[style*="width"] {
-        background: linear-gradient(90deg, #4ade80 0%, #2dd4bf 40%, #3b82f6 75%, #b80fde 100%) !important;
-        opacity: 0.5 !important;
+        background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899) !important;
+        opacity: 0.8 !important;
         border-radius: 10px !important;
     }
 
-    /* --- 8. 字體顏色微調 --- */
-    .service-name { color: #ffffff !important; font-weight: 700 !important; }
-    .service-description { color: rgba(255, 255, 255, 0.5) !important; }
-
+    /* --- 8. 字體細節修正 --- */
+    .service-name { 
+        color: #ffffff !important; 
+        font-weight: 700 !important; 
+        font-size: 0.95rem !important; 
+        letter-spacing: -0.01em;
+    }
+    .service-description { 
+        color: rgba(255, 255, 255, 0.4) !important; 
+        font-size: 0.75rem !important;
+        margin-top: -2px;
+    }
   bookmarks.yaml: ""
   custom.yaml: ""
-
