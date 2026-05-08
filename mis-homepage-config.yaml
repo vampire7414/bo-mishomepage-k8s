@@ -202,102 +202,102 @@ data:
                 href: http://10.8.128.105/
 
   custom.css: |
-    /* --- 1. 全域滾輪隱藏 --- */
+    /* --- 1. 全域滾輪隱藏 (讓介面更像原生 App) --- */
     ::-webkit-scrollbar { display: none; }
     body { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* --- 2. 圓角與基礎質感 (修正巨大化問題) --- */
-    .service-card, .bookmark-card,
-    div[id$="-card"], div[id$="-card"] > div {
-        border-radius: 20px !important; /* 稍微縮小圓角讓小卡片更協調 */
+    /* --- 2. 圓角主樣式 (Master Rounded Corners) --- */
+    .service-card, .bookmark-card, .group-header,
+    div[id$="-card"], div[id$="-card"] > div,
+    div[class*="rounded-lg"] {
+        border-radius: 25px !important; /* Reddit 原作者風格的超圓潤邊角 */
         overflow: hidden !important;
         isolation: isolate !important;
     }
 
-    .service-card {
-        background-color: rgba(255, 255, 255, 0.03) !important;
-        backdrop-filter: blur(10px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.05) !important;
-        min-height: 50px !important; /* 強制設定最小高度，防止異常撐大 */
-        transition: all 0.2s ease !important;
-    }
-
-    /* 核心修正：縮減內邊距，解決區塊巨大化 */
-    .service-card > div {
-        position: relative;
-        z-index: 1;
-        padding: 0.6rem 0.8rem !important; /* 大幅縮小內距 (原先可能被設為 1.2rem) */
-    }
-
-    /* --- 3. 卡片著色背景 (維持偏移層次感) --- */
-    [id$="-card"] {
+    /* --- 3. 卡片著色容器設定 (對應你的 MIS ID) --- */
+    #argocd-card, #rancher-card, #grafana-card, #prometheus-card, #jenkins-card, #lam-card,
+    #fortigate-card, #paloalto-card, #omada-card, #cloudflare-card, #godaddy-card,
+    #vcenter-card, #esxi12-card, #esxi16-card, #nas244-card, #nas245-card,
+    #uptime-card, #librenms-card, #assettiger-card, #bitwarden-card,
+    #pbx-card, #printer-card, #ad103-card, #ad105-card {
         position: relative !important;
         background-color: transparent !important;
     }
 
+    /* 建立彩色底層 (偽元素) */
     [id$="-card"]::before {
         content: "";
         position: absolute;
         top: 2px;
         left: 2px;
         right: 2px;
-        bottom: 4px; /* 底部偏移，營造陰影感 */
+        bottom: 6px; /* 原作者特有的偏移量，營造層次感 */
         z-index: 0;
-        border-radius: 18px !important;
-        opacity: 0.15 !important; /* 保持低飽和的清透感 */
+        border-radius: 23px !important;
+        opacity: 0.35; /* 顏色深度依原作者設定 */
     }
 
-    /* --- 4. 服務顏色分配 (沿用您的 MIS 配色) --- */
-    #argocd-card::before, #rancher-card::before, #jenkins-card::before, #lam-card::before { background-color: #8b5cf6 !important; }
-    #grafana-card::before, #prometheus-card::before, #uptime-card::before, #librenms-card::before { background-color: #0ea5e9 !important; }
-    #fortigate-card::before, #paloalto-card::before, #cloudflare-card::before { background-color: #f43f5e !important; }
-    #vcenter-card::before, #esxi12-card::before, #esxi16-card::before { background-color: #f59e0b !important; }
-    #nas244-card::before, #nas245-card::before, #assettiger-card::before { background-color: #10b981 !important; }
-    #pbx-card::before, #printer-card::before, #ad103-card::before, #ad105-card::before, #bitwarden-card::before { background-color: #64748b !important; }
+    /* --- 4. 服務顏色分配 (改為 MIS 相關色彩) --- */
+    /* K8s 與 持續整合 (紫色系) */
+    #argocd-card::before, #rancher-card::before, #jenkins-card::before { background-color: #AA5CC3 !important; }
+    /* 監控與分析 (藍色系) */
+    #grafana-card::before, #prometheus-card::before, #librenms-card::before { background-color: #25C1FF !important; }
+    /* 網路安全 (紅色系) */
+    #fortigate-card::before, #paloalto-card::before, #cloudflare-card::before { background-color: #ff3d00 !important; }
+    /* 虛擬化平台 (橘色/青色系) */
+    #vcenter-card::before, #esxi12-card::before, #esxi16-card::before { background-color: #ff7b00 !important; }
+    /* 儲存與監控狀態 (綠色系) */
+    #nas244-card::before, #nas245-card::before, #uptime-card::before { background-color: #00C655 !important; }
+    /* 其他管理設備 (藍灰色) */
+    #pbx-card::before, #printer-card::before, #ad103-card::before, #ad105-card::before, #bitwarden-card::before { background-color: #6aabbf !important; }
 
-    /* --- 5. 重新定位微型 Ping 標籤 --- */
+    /* --- 5. 狀態標籤與 PING 重新定位 (原作者最精華部分) --- */
+    .service-card > div { position: relative; z-index: 1; }
+
     .service-ping .ping-status {
-        background-color: rgba(0, 0, 0, 0.2) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 5px !important;
-        padding: 1px 4px !important;
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 8px !important;
+        padding: 2px 6px !important;
         position: absolute !important;
-        top: 8px !important;
-        right: 8px !important;
+        top: 10px !important;
+        right: 12px !important;
     }
 
     .service-ping .ping-status div {
-        font-size: 8px !important; /* 縮小文字，讓視覺更精緻 */
+        font-size: 9px !important;
         font-weight: 800 !important;
         text-transform: uppercase !important;
-        color: rgba(255, 255, 255, 0.8) !important;
     }
 
-    /* --- 6. 字體與資訊佈局修正 --- */
-    .service-name { 
-        font-size: 0.95rem !important; /* 縮小標題防止撐大區塊 */
-        font-weight: 700 !important; 
-        color: #ffffff !important;
-    }
-    
-    .service-description { 
-        color: rgba(255, 255, 255, 0.5) !important; 
-        font-size: 0.75rem !important;
-    }
-
-    /* 針對 Widget (如 Rancher/ArgoCD) 內部資訊的微縮 */
-    .service-card .widget-data {
-        font-size: 0.7rem !important;
-        gap: 0.5rem !important;
-    }
-
-    /* --- 7. 頂部導航藥丸欄 (保持簡約) --- */
+    /* --- 6. 頂部導航欄美化 (Tabs) --- */
     #tabs ul {
-        background-color: rgba(255, 255, 255, 0.05) !important;
+        background-color: rgba(58, 58, 58, 0.2) !important;
         border-radius: 50px !important;
         padding: 4px !important;
-        margin-bottom: 15px !important;
+        width: fit-content !important;
+        margin: 0 auto !important;
     }
+
+    #tabs ul li button[aria-selected="true"] {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: #6aabbf !important;
+        border-radius: 50px !important;
+        font-weight: bold !important;
+    }
+
+    /* --- 7. 系統監控漸層條 (System Monitor Gradient) --- */
+    .information-widget-resource div[style*="width"] {
+        background: linear-gradient(90deg, #4ade80 0%, #2dd4bf 40%, #3b82f6 75%, #b80fde 100%) !important;
+        opacity: 0.5 !important;
+        border-radius: 10px !important;
+    }
+
+    /* --- 8. 字體顏色微調 --- */
+    .service-name { color: #ffffff !important; font-weight: 700 !important; }
+    .service-description { color: rgba(255, 255, 255, 0.5) !important; }
 
   bookmarks.yaml: ""
   custom.yaml: ""
+
