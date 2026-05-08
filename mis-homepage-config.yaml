@@ -39,23 +39,24 @@ data:
         timezone: "Asia/Taipei"
         units: metric
         cache: 5
-    - kubernetes: 
-        cluster: { show: true, cpu: true, memory: true, label: "K8s-Lab2" } 
+    - kubernetes:
+        cluster: { show: true, cpu: true, memory: true, label: "K8s-Lab2" }
         nodes: { show: true, cpu: true, memory: true }
 
   services.yaml: |
     - 核心運維基礎設施:
         - Kubernetes 叢集管理:
             - ArgoCD:
+                id: argocd-card
                 icon: si-argo
                 href: https://k8s-lab2-argocd.eagle.corp/
-                description: "應用程式持續交付"
                 widget:
                   type: argocd
                   url: https://k8s-lab2-argocd.eagle.corp
                   key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhcmdvY2QiLCJzdWIiOiJob21lcGFnZS1yZWFkOmFwaUtleSIsIm5iZiI6MTc3NzUzNTc2NiwiaWF0IjoxNzc3NTM1NzY2LCJqdGkiOiI2N2MwYTRkMy02ZjhjLTQzOTMtYTg5NC01NzA1ZWQxMGVjMjMifQ.MAJfsPwRZaS6J_fvAsQFbUdvCTwBJLRJymBJP2p0Q2c"
                   allowInsecure: true
             - Rancher:
+                id: rancher-card
                 icon: mdi-kubernetes
                 href: https://k8s-lab2-rancher.eagle.corp/
                 widget:
@@ -63,102 +64,91 @@ data:
                   url: http://10.8.128.111:61211/workloads
                   refreshInterval: 10000
                   mappings:
-                    - field: ns_count
-                      label: 命名空間 (NS)
-                    - field: pod_status
-                      label: Pods (Run/Suc)
-                    - field: workload_counts
-                      label: D / STS / DS
-                    - field: pod_health
-                      label: 叢集健康度
+                    - { field: ns_count, label: NS }
+                    - { field: pod_status, label: Pods (Run/Suc) }
+                    - { field: workload_counts, label: D / STS / DS }
+                    - { field: pod_health, label: 叢集健康度 }
             - Grafana:
+                id: grafana-card
                 icon: si-grafana
                 href: http://k8s-lab2-grafana.eagle.corp/
             - Prometheus:
+                id: prometheus-card
                 icon: si-prometheus
                 href: http://k8s-lab2-prometheus.eagle.corp/
             - Jenkins:
+                id: jenkins-card
                 icon: si-jenkins
                 href: http://k8s-lab2-jenkins.eagle.corp/
             - LAM:
+                id: lam-card
                 icon: mdi-account-cog
                 href: http://k8s-lab2-lam.eagle.corp/
         - 防火牆與網路設備:
             - FortiGate FW:
+                id: fortigate-card
                 icon: si-fortinet
                 href: https://10.8.28.11:54088
-                statusStyle: "dot"
                 ping: 10.8.28.11
             - PaloAlto FW:
+                id: paloalto-card
                 icon: si-paloaltonetworks
                 href: https://10.8.28.10
-                statusStyle: "dot"
                 ping: 10.8.28.10
             - Omada AP:
+                id: omada-card
                 icon: si-omadacloud
                 href: https://10.8.28.32
-                statusStyle: "dot"
                 ping: 10.8.28.32
-                description: "TP-Link Omada Controller"
             - Cloudflare:
+                id: cloudflare-card
                 icon: si-cloudflare
                 href: https://dash.cloudflare.com/login
             - GoDaddy:
+                id: godaddy-card
                 icon: si-godaddy
                 href: https://www.godaddy.com/zh
         - 虛擬化與雲端架構:
             - vCenter:
+                id: vcenter-card
                 icon: si-vmware
                 href: https://10.70.90.10/
-                statusStyle: "dot"
                 ping: 10.70.90.10
             - ESXi-12:
+                id: esxi12-card
                 icon: mdi-server
                 href: https://10.70.90.12/
-                statusStyle: "dot"
                 ping: 10.70.90.12
                 widget:
                   type: customapi
                   url: http://10.8.128.111:61210/stats
-                  refreshInterval: 10000
                   mappings:
-                    - field: esxi_10_70_90_12.cpu
-                      label: CPU
-                      format: percent
-                    - field: esxi_10_70_90_12.mem
-                      label: MEM
-                      format: percent
+                    - { field: esxi_10_70_90_12.cpu, label: CPU, format: percent }
+                    - { field: esxi_10_70_90_12.mem, label: MEM, format: percent }
             - ESXi-16:
+                id: esxi16-card
                 icon: mdi-server
                 href: https://10.70.90.16/
-                statusStyle: "dot"
                 ping: 10.70.90.16
                 widget:
                   type: customapi
                   url: http://10.8.128.111:61210/stats
-                  refreshInterval: 10000
                   mappings:
-                    - field: esxi_10_70_90_16.cpu
-                      label: CPU
-                      format: percent
-                    - field: esxi_10_70_90_16.mem
-                      label: MEM
-                      format: percent
+                    - { field: esxi_10_70_90_16.cpu, label: CPU, format: percent }
+                    - { field: esxi_10_70_90_16.mem, label: MEM, format: percent }
             - Synology-244:
+                id: nas244-card
                 icon: si-synology
                 href: http://10.8.100.244:5000
-                statusStyle: "dot"
-                ping: 10.8.100.244
                 widget:
                   type: diskstation
                   url: http://10.8.100.244:5000
                   username: hsadmin
                   password: 'm:i(t''G4'
             - Synology-245:
+                id: nas245-card
                 icon: si-synology
                 href: http://10.8.100.245:5000
-                statusStyle: "dot"
-                ping: 10.8.100.245
                 widget:
                   type: diskstation
                   url: http://10.8.100.245:5000
@@ -167,6 +157,7 @@ data:
     - 運維支援與周邊:
         - 運維監控與資產管理:
             - Uptime Kuma:
+                id: uptime-card
                 icon: si-uptimekuma
                 href: https://uptime-kuma.eagle.corp/status/server-status
                 widget:
@@ -175,43 +166,95 @@ data:
                   slug: server-status
                   refreshInterval: 10000
                   mappings:
-                    - field: up
-                      label: 在線
-                    - field: down
-                      label: 異常
-                    - field: uptime
-                      label: 可用率
-                      format: percent
+                    - { field: up, label: 在線 }
+                    - { field: down, label: 異常 }
+                    - { field: uptime, label: 可用率, format: percent }
             - LibreNMS:
+                id: librenms-card
                 icon: mdi-monitor-dashboard
                 href: http://librenms.eagle.corp/
             - AssetTiger:
+                id: assettiger-card
                 icon: mdi-tag-multiple
                 href: https://www.assettiger.com/dashboard
-                description: "資產管理系統"
             - Bitwarden:
+                id: bitwarden-card
                 icon: si-bitwarden
                 href: https://vault.bitwarden.com/
-                description: "密碼庫"
         - 其他管理系統:
             - PBX 電話系統:
+                id: pbx-card
                 icon: mdi-phone-voip
                 href: https://10.8.8.150:8088/
-                statusStyle: "dot"
                 ping: 10.8.8.150
-                description: "Yeastar S20 EAGLE"
             - Sharp 印表機:
+                id: printer-card
                 icon: mdi-printer-settings
                 href: http://10.8.28.100
-                statusStyle: "dot"
                 ping: 10.8.28.100
-                description: "MX-2651 管理頁面"
             - AD Web-103:
+                id: ad103-card
                 icon: mdi-microsoft-windows
                 href: http://10.8.128.103/
             - AD Web-105:
+                id: ad105-card
                 icon: mdi-microsoft-windows
                 href: http://10.8.128.105/
+
+  custom.css: |
+    /* --- 全域隱藏滾輪 --- */
+    ::-webkit-scrollbar { display: none; }
+    body { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* --- Reddit 圓角樣式 --- */
+    .service-card, .bookmark-card, .group-header,
+    div[id$="-card"], div[id$="-card"] > div,
+    div[class*="rounded-lg"] {
+        border-radius: 20px !important;
+        overflow: hidden !important;
+        isolation: isolate !important;
+    }
+
+    /* --- 背景染色容器設定 --- */
+    [id$="-card"] {
+        position: relative !important;
+        background-color: transparent !important;
+    }
+
+    /* 建立彩色底層 */
+    [id$="-card"]::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        z-index: 0;
+        opacity: 0.15; /* 輕微染色感 */
+        transition: opacity 0.3s ease;
+    }
+
+    /* 滑鼠懸停時加深顏色 */
+    [id$="-card"]:hover::before {
+        opacity: 0.3;
+    }
+
+    /* --- 針對 ID 分配顏色 --- */
+    /* K8s 管理 (紫色) */
+    #argocd-card::before, #rancher-card::before, #jenkins-card::before, #lam-card::before { background-color: #A855F7 !important; }
+    /* 監控分析 (橘色) */
+    #grafana-card::before, #prometheus-card::before, #uptime-card::before, #librenms-card::before { background-color: #F97316 !important; }
+    /* 網路設備 (紅色) */
+    #fortigate-card::before, #paloalto-card::before, #cloudflare-card::before { background-color: #EF4444 !important; }
+    /* 虛擬化 (藍色) */
+    #vcenter-card::before, #esxi12-card::before, #esxi16-card::before { background-color: #3B82F6 !important; }
+    /* 存儲與資產 (青綠) */
+    #nas244-card::before, #nas245-card::before, #assettiger-card::before { background-color: #06B6D4 !important; }
+    /* 其他與 Windows (藍灰色) */
+    #pbx-card::before, #printer-card::before, #ad103-card::before, #ad105-card::before, #bitwarden-card::before { background-color: #64748B !important; }
+
+    /* 確保內容在偽元素之上 */
+    .service-card > div { position: relative; z-index: 1; }
+
+    /* 美化標記 (Ping Status) */
+    span.status-dot { width: 8px !important; height: 8px !important; }
 
   bookmarks.yaml: ""
   custom.yaml: ""

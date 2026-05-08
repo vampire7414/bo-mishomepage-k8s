@@ -11,11 +11,12 @@ spec:
   template:
     metadata:
       annotations:
-        config-hash: "v34" # 確保 apply 時會重新觸發 Pod
+        # 每次修改 ConfigMap 後，記得更新這裡的 hash 或版本號，強制 Pod 重啟載入新檔案
+        config-hash: "reddit-style-v1" 
       labels:
         app: mishomepage
     spec:
-      serviceAccountName: homepage-admin # 這是關鍵，必須對應有權限的 SA
+      serviceAccountName: homepage-admin
       containers:
       - name: mishomepage
         image: ghcr.io/gethomepage/homepage:latest
@@ -43,10 +44,14 @@ spec:
         - name: mis-config-volume
           mountPath: /app/config/custom.yaml
           subPath: custom.yaml
-        # 強制掛載 kubernetes.yaml 避開自動生成機制
         - name: mis-config-volume
           mountPath: /app/config/kubernetes.yaml
           subPath: kubernetes.yaml
+        # --- 關鍵：必須掛載這個檔案 ---
+        - name: mis-config-volume
+          mountPath: /app/config/custom.css
+          subPath: custom.css
+        # --------------------------
         - name: logs-volume
           mountPath: /app/config/logs
       volumes:
