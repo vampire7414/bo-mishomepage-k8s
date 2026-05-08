@@ -31,10 +31,7 @@ data:
     - datetime:
         style: clock
         locale: zh-TW
-        format:
-          dateStyle: "full"
-          timeStyle: "short"
-          hour12: true
+        format: { dateStyle: "full", timeStyle: "short", hour12: true }
     - openmeteo:
         label: "台中"
         latitude: 24.1620
@@ -42,18 +39,9 @@ data:
         timezone: "Asia/Taipei"
         units: metric
         cache: 5
-    - kubernetes:
-        cluster:
-          show: true
-          cpu: true
-          memory: true
-          showLabel: true
-          label: "K8s-Lab2"
-        nodes:
-          show: true
-          cpu: true
-          memory: true
-          showLabel: true
+    - kubernetes: 
+        cluster: { show: true, cpu: true, memory: true, label: "K8s-Lab2" } 
+        nodes: { show: true, cpu: true, memory: true }
 
   services.yaml: |
     - 核心運維基礎設施:
