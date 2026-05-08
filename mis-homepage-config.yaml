@@ -61,7 +61,6 @@ data:
             - ArgoCD:
                 icon: si-argo
                 href: https://k8s-lab2-argocd.eagle.corp/
-                description: "應用程式持續交付"
                 widget:
                   type: argocd
                   url: https://k8s-lab2-argocd.eagle.corp
@@ -76,11 +75,11 @@ data:
                   refreshInterval: 10000
                   mappings:
                     - field: ns_count
-                      label: 命名空間 (NS)
+                      label: NS
                     - field: pod_status
                       label: Pods (Run/Suc)
                     - field: workload_counts
-                      label: D / STS / DS
+                      label: D/S/D
                     - field: pod_health
                       label: 叢集健康度
             - Grafana:
@@ -99,19 +98,15 @@ data:
             - FortiGate FW:
                 icon: si-fortinet
                 href: https://10.8.28.11:54088
-                statusStyle: "dot"
                 ping: 10.8.28.11
             - PaloAlto FW:
                 icon: si-paloaltonetworks
                 href: https://10.8.28.10
-                statusStyle: "dot"
                 ping: 10.8.28.10
             - Omada AP:
                 icon: si-omadacloud
                 href: https://10.8.28.32
-                statusStyle: "dot"
                 ping: 10.8.28.32
-                description: "TP-Link Omada Controller"
             - Cloudflare:
                 icon: si-cloudflare
                 href: https://dash.cloudflare.com/login
@@ -122,17 +117,14 @@ data:
             - vCenter:
                 icon: si-vmware
                 href: https://10.70.90.10/
-                statusStyle: "dot"
                 ping: 10.70.90.10
             - ESXi-12:
                 icon: mdi-server
                 href: https://10.70.90.12/
-                statusStyle: "dot"
                 ping: 10.70.90.12
                 widget:
                   type: customapi
                   url: http://10.8.128.111:61210/stats
-                  refreshInterval: 10000
                   mappings:
                     - field: esxi_10_70_90_12.cpu
                       label: CPU
@@ -143,12 +135,10 @@ data:
             - ESXi-16:
                 icon: mdi-server
                 href: https://10.70.90.16/
-                statusStyle: "dot"
                 ping: 10.70.90.16
                 widget:
                   type: customapi
                   url: http://10.8.128.111:61210/stats
-                  refreshInterval: 10000
                   mappings:
                     - field: esxi_10_70_90_16.cpu
                       label: CPU
@@ -159,8 +149,6 @@ data:
             - Synology-244:
                 icon: si-synology
                 href: http://10.8.100.244:5000
-                statusStyle: "dot"
-                ping: 10.8.100.244
                 widget:
                   type: diskstation
                   url: http://10.8.100.244:5000
@@ -169,8 +157,6 @@ data:
             - Synology-245:
                 icon: si-synology
                 href: http://10.8.100.245:5000
-                statusStyle: "dot"
-                ping: 10.8.100.245
                 widget:
                   type: diskstation
                   url: http://10.8.100.245:5000
@@ -185,7 +171,6 @@ data:
                   type: uptimekuma
                   url: https://uptime-kuma.eagle.corp
                   slug: server-status
-                  refreshInterval: 10000
                   mappings:
                     - field: up
                       label: 在線
@@ -200,30 +185,82 @@ data:
             - AssetTiger:
                 icon: mdi-tag-multiple
                 href: https://www.assettiger.com/dashboard
-                description: "資產管理系統"
             - Bitwarden:
                 icon: si-bitwarden
                 href: https://vault.bitwarden.com/
-                description: "密碼庫"
         - 其他管理系統:
             - PBX 電話系統:
                 icon: mdi-phone-voip
                 href: https://10.8.8.150:8088/
-                statusStyle: "dot"
                 ping: 10.8.8.150
-                description: "Yeastar S20 EAGLE"
             - Sharp 印表機:
                 icon: mdi-printer-settings
                 href: http://10.8.28.100
-                statusStyle: "dot"
                 ping: 10.8.28.100
-                description: "MX-2651 管理頁面"
             - AD Web-103:
                 icon: mdi-microsoft-windows
                 href: http://10.8.128.103/
             - AD Web-105:
                 icon: mdi-microsoft-windows
                 href: http://10.8.128.105/
+
+  custom.css: |
+    /* 讓每個子群組都有一個明顯的毛玻璃外框 */
+    .subgroup {
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 25px !important;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    /* 螢光筆標題基礎樣式 */
+    .subgroup-title {
+      font-weight: 800 !important;
+      padding: 4px 12px;
+      border-radius: 4px;
+      margin-bottom: 12px !important;
+      display: inline-block;
+      letter-spacing: 0.5px;
+      color: #ffffff !important;
+    }
+
+    /* 核心運維 - 子區塊配色 */
+    /* 1. K8s管理: 螢光電紫 */
+    div[data-group="核心運維基礎設施"] .subgroup:nth-child(1) .subgroup-title {
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      box-shadow: 0 0 10px rgba(118, 75, 162, 0.6);
+    }
+    /* 2. 網路設備: 螢光烈焰 */
+    div[data-group="核心運維基礎設施"] .subgroup:nth-child(2) .subgroup-title {
+      background: linear-gradient(90deg, #ff8c00 0%, #ed1c24 100%);
+      box-shadow: 0 0 10px rgba(237, 28, 36, 0.6);
+    }
+    /* 3. 虛擬化: 螢光極光綠 */
+    div[data-group="核心運維基礎設施"] .subgroup:nth-child(3) .subgroup-title {
+      background: linear-gradient(90deg, #00b09b 0%, #96c93d 100%);
+      box-shadow: 0 0 10px rgba(150, 201, 61, 0.6);
+    }
+
+    /* 運維支援 - 子區塊配色 */
+    /* 1. 監控資產: 藍寶石 */
+    div[data-group="運維支援與周邊"] .subgroup:nth-child(1) .subgroup-title {
+      background: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%);
+      box-shadow: 0 0 10px rgba(33, 147, 176, 0.6);
+    }
+    /* 2. 其他管理: 玫瑰金 */
+    div[data-group="運維支援與周邊"] .subgroup:nth-child(2) .subgroup-title {
+      background: linear-gradient(90deg, #e94057 0%, #f27121 100%);
+      box-shadow: 0 0 10px rgba(233, 64, 87, 0.6);
+    }
+
+    /* 卡片動態效果 */
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+      transition: all 0.2s ease-in-out;
+    }
 
   bookmarks.yaml: ""
   custom.yaml: ""
