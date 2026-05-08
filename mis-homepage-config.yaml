@@ -206,34 +206,31 @@ data:
     ::-webkit-scrollbar { display: none; }
     body { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* --- 2. 圓角與基礎質感 (原作者靈魂：毛玻璃) --- */
-    .service-card, .bookmark-card, .group-header,
-    div[id$="-card"], div[id$="-card"] > div,
-    div[class*="rounded-lg"] {
-        border-radius: 25px !important;
+    /* --- 2. 圓角與基礎質感 (修正巨大化問題) --- */
+    .service-card, .bookmark-card,
+    div[id$="-card"], div[id$="-card"] > div {
+        border-radius: 20px !important; /* 稍微縮小圓角讓小卡片更協調 */
         overflow: hidden !important;
         isolation: isolate !important;
     }
 
     .service-card {
         background-color: rgba(255, 255, 255, 0.03) !important;
-        backdrop-filter: blur(12px) !important; /* 原作者質感關鍵 */
+        backdrop-filter: blur(10px) !important;
         border: 1px solid rgba(255, 255, 255, 0.05) !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        min-height: 50px !important; /* 強制設定最小高度，防止異常撐大 */
+        transition: all 0.2s ease !important;
     }
 
-    .service-card:hover {
-        transform: translateY(-4px) !important;
-        background-color: rgba(255, 255, 255, 0.06) !important;
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3) !important;
+    /* 核心修正：縮減內邊距，解決區塊巨大化 */
+    .service-card > div {
+        position: relative;
+        z-index: 1;
+        padding: 0.6rem 0.8rem !important; /* 大幅縮小內距 (原先可能被設為 1.2rem) */
     }
 
-    /* --- 3. 卡片著色容器設定 (偏移光暈效果) --- */
-    #argocd-card, #rancher-card, #grafana-card, #prometheus-card, #jenkins-card, #lam-card,
-    #fortigate-card, #paloalto-card, #omada-card, #cloudflare-card, #godaddy-card,
-    #vcenter-card, #esxi12-card, #esxi16-card, #nas244-card, #nas245-card,
-    #uptime-card, #librenms-card, #assettiger-card, #bitwarden-card,
-    #pbx-card, #printer-card, #ad103-card, #ad105-card {
+    /* --- 3. 卡片著色背景 (維持偏移層次感) --- */
+    [id$="-card"] {
         position: relative !important;
         background-color: transparent !important;
     }
@@ -241,87 +238,65 @@ data:
     [id$="-card"]::before {
         content: "";
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
+        top: 2px;
+        left: 2px;
+        right: 2px;
+        bottom: 4px; /* 底部偏移，營造陰影感 */
         z-index: 0;
-        border-radius: 25px !important;
-        opacity: 0.18 !important; /* 大幅降低初次顯示的飽和度 */
-        transition: opacity 0.3s ease;
+        border-radius: 18px !important;
+        opacity: 0.15 !important; /* 保持低飽和的清透感 */
     }
 
-    [id$="-card"]:hover::before {
-        opacity: 0.35 !important; /* 懸停時才顯色 */
-    }
-
-    /* --- 4. 服務顏色分配 (MIS 科技感配色) --- */
-    /* 紫色 (CI/CD, K8s) */
+    /* --- 4. 服務顏色分配 (沿用您的 MIS 配色) --- */
     #argocd-card::before, #rancher-card::before, #jenkins-card::before, #lam-card::before { background-color: #8b5cf6 !important; }
-    /* 藍色 (監控, 分析) */
     #grafana-card::before, #prometheus-card::before, #uptime-card::before, #librenms-card::before { background-color: #0ea5e9 !important; }
-    /* 紅橘 (網路, 安全) */
     #fortigate-card::before, #paloalto-card::before, #cloudflare-card::before { background-color: #f43f5e !important; }
-    /* 琥珀 (虛擬化) */
     #vcenter-card::before, #esxi12-card::before, #esxi16-card::before { background-color: #f59e0b !important; }
-    /* 翠綠 (儲存, 資產) */
     #nas244-card::before, #nas245-card::before, #assettiger-card::before { background-color: #10b981 !important; }
-    /* 灰藍 (Windows, 其他) */
     #pbx-card::before, #printer-card::before, #ad103-card::before, #ad105-card::before, #bitwarden-card::before { background-color: #64748b !important; }
 
-    /* --- 5. 數位風格 Ping 標籤 --- */
-    .service-card > div { position: relative; z-index: 1; padding: 1.2rem !important; }
-
+    /* --- 5. 重新定位微型 Ping 標籤 --- */
     .service-ping .ping-status {
-        background-color: rgba(0, 0, 0, 0.3) !important;
+        background-color: rgba(0, 0, 0, 0.2) !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 6px !important;
-        padding: 1px 6px !important;
+        border-radius: 5px !important;
+        padding: 1px 4px !important;
         position: absolute !important;
-        top: 14px !important;
-        right: 14px !important;
-        backdrop-filter: blur(4px);
+        top: 8px !important;
+        right: 8px !important;
     }
 
     .service-ping .ping-status div {
-        font-size: 10px !important;
-        font-weight: 700 !important;
-        letter-spacing: 0.05em;
+        font-size: 8px !important; /* 縮小文字，讓視覺更精緻 */
+        font-weight: 800 !important;
         text-transform: uppercase !important;
-        color: #ddd !important;
+        color: rgba(255, 255, 255, 0.8) !important;
     }
 
-    /* --- 6. 頂部導航藥丸欄 --- */
+    /* --- 6. 字體與資訊佈局修正 --- */
+    .service-name { 
+        font-size: 0.95rem !important; /* 縮小標題防止撐大區塊 */
+        font-weight: 700 !important; 
+        color: #ffffff !important;
+    }
+    
+    .service-description { 
+        color: rgba(255, 255, 255, 0.5) !important; 
+        font-size: 0.75rem !important;
+    }
+
+    /* 針對 Widget (如 Rancher/ArgoCD) 內部資訊的微縮 */
+    .service-card .widget-data {
+        font-size: 0.7rem !important;
+        gap: 0.5rem !important;
+    }
+
+    /* --- 7. 頂部導航藥丸欄 (保持簡約) --- */
     #tabs ul {
         background-color: rgba(255, 255, 255, 0.05) !important;
-        border: 1px solid rgba(255, 255, 255, 0.05) !important;
         border-radius: 50px !important;
-        padding: 5px !important;
-        margin: 0 auto 20px auto !important;
-        width: fit-content !important;
-    }
-
-    #tabs ul li button[aria-selected="true"] {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        color: #fff !important;
-        border-radius: 50px !important;
-        font-weight: 600 !important;
-    }
-
-    /* --- 7. 彩色資源進度條 --- */
-    .information-widget-resource div[style*="width"] {
-        background: linear-gradient(90deg, #3b82f6 0%, #a855f7 50%, #f43f5e 100%) !important;
-        border-radius: 20px !important;
-        height: 8px !important;
-    }
-
-    /* --- 8. 字體美化 --- */
-    .service-name { 
-        font-size: 1.1rem !important;
-        font-weight: 700 !important; 
-        letter-spacing: -0.01em;
-        margin-bottom: 2px;
-    }
-    .service-description { 
-        color: rgba(255, 255, 255, 0.45) !important; 
-        font-size: 0.85rem !important;
+        padding: 4px !important;
+        margin-bottom: 15px !important;
     }
 
   bookmarks.yaml: ""

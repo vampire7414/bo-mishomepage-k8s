@@ -12,7 +12,7 @@ spec:
     metadata:
       annotations:
         # 每次修改 ConfigMap 後，記得更新這裡的 hash 或版本號，強制 Pod 重啟載入新檔案
-        config-hash: "reddit-style-v4" 
+        config-hash: "reddit-style-v5" 
       labels:
         app: mishomepage
     spec:
