@@ -113,6 +113,16 @@ data:
                 id: godaddy-card
                 icon: si-godaddy
                 href: https://www.godaddy.com/zh
+            - 🛡️ API 伺服器哨兵:
+                widget:
+                type: customapi
+                url: http://10.8.128.111:4999/scan
+                refreshInterval: 30000          # 建議設 30 秒，監控不需要太頻繁
+                display: dynamic-list
+                mappings:
+                    name: API_Name                # 對應 Python 中的 "🐍 movie_api.py"
+                    label: Port                   # 對應 Python 中的 "Port: 5000"
+                    status: Status                # 對應 Python 中的 "🟢 運行中"
         - 虛擬化與雲端架構:
             - vCenter:
                 id: vcenter-card
@@ -313,7 +323,7 @@ data:
     /* --- 8. 字體顏色微調 (不動) --- */
     .service-name { color: #ffffff !important; font-weight: 700 !important; }
     .service-description { color: rgba(255, 255, 255, 0.5) !important; }
-    
+
   bookmarks.yaml: ""
   custom.yaml: ""
 
