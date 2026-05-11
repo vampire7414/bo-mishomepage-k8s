@@ -120,8 +120,10 @@ data:
                 refreshInterval: 30000
                 display: dynamic-list
                 mappings:
-                    name: line1     # 對應 Python 輸出的 "🐍 movie_api.py｜5000"
-                    label: line2    # 對應 Python 輸出的 "🟢 運行中"
+                    name: line1     # 必須對應 JSON 裡的 "line1"
+                    label: line2    # 必須對應 JSON 裡的 "line2"
+                    format: text
+                    limit: 10
         - 虛擬化與雲端架構:
             - vCenter:
                 id: vcenter-card
