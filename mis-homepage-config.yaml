@@ -114,14 +114,15 @@ data:
                 icon: si-godaddy
                 href: https://www.godaddy.com/zh
             - 🛡️ API 伺服器哨兵:
+                icon: mdi-shield-check # 建議加個圖示比較美
                 widget:
-                type: customapi
-                url: http://10.8.128.111:4999/scan
-                refreshInterval: 30000
-                display: dynamic-list
-                mappings:
-                    name: line1     # 必須對應 JSON 裡的 "line1"
-                    label: line2    # 必須對應 JSON 裡的 "line2"
+                  type: customapi
+                  url: http://10.8.128.111:4999/scan
+                  refreshInterval: 30000
+                  display: dynamic-list
+                  mappings:
+                    name: line1
+                    label: line2
                     format: text
                     limit: 10
         - 虛擬化與雲端架構:
