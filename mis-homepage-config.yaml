@@ -231,7 +231,7 @@ data:
         - 帳號安全管理:
             - 密碼過期預警:
                 id: pwd-expiry-card
-                icon: mdi-key-alert
+                icon: mdi-key-alert-#f44336
                 widget:
                   type: customapi
                   url: http://k8s-lab2-lam.eagle.corp/api/user/expiring-passwords
