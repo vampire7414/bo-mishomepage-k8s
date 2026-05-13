@@ -185,9 +185,9 @@ data:
                 refreshInterval: 3600000 # 一小時更新一次即可
                 display: dynamic-list
                 mappings:
-                    - field: SamAccountName
+                  - field: SamAccountName
                     label: 帳號
-                    - field: Status
+                  - field: Status
                     label: 狀態
     - 運維支援與周邊:
         - 運維監控與資產管理:
