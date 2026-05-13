@@ -12,11 +12,11 @@ data:
     layout:
       - 核心運維基礎設施:
           style: row
-          columns: 4
+          columns: 3
           header: false
       - 運維支援與周邊:
           style: row
-          columns: 2
+          columns: 3
           header: false
 
   kubernetes.yaml: |
@@ -176,19 +176,6 @@ data:
                   url: http://10.8.100.245:5000
                   username: hsadmin
                   password: 'm:i(t''G4'
-        - 密碼過期預警:
-            icon: mdi-key-alert
-            widget:
-                type: customapi
-                url: http://k8s-lab2-lam.eagle.corp/api/user/expiring-passwords
-                method: POST  # 注意：你原本是用 POST 請求
-                refreshInterval: 3600000 # 一小時更新一次即可
-                display: dynamic-list
-                mappings:
-                  - field: SamAccountName
-                    label: 帳號
-                  - field: Status
-                    label: 狀態
     - 運維支援與周邊:
         - 運維監控與資產管理:
             - Uptime Kuma:
@@ -241,7 +228,21 @@ data:
                 id: ad105-card
                 icon: sh-microsoft-windows.webp
                 href: http://10.8.128.105/
-
+        - 帳號安全管理:
+            - 密碼過期預警:
+                id: pwd-expiry-card
+                icon: mdi-key-alert
+                widget:
+                  type: customapi
+                  url: http://k8s-lab2-lam.eagle.corp/api/user/expiring-passwords
+                  method: POST
+                  display: dynamic-list
+                  mappings:
+                    items: result        # 對應 JSON 裡的 "result" 陣列
+                    name: SamAccountName # 左邊顯示帳號名稱
+                    label: Status        # 右邊顯示「已過期 XXX 天」
+                    format: text
+                    limit: 10            # 避免帳號太多撐爆版面
   custom.css: |
     /* --- 1. 全域滾輪隱藏 (讓介面更像原生 App) --- */
     ::-webkit-scrollbar { display: none; }
