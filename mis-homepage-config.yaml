@@ -48,7 +48,7 @@ data:
         - Kubernetes 叢集管理:
             - ArgoCD:
                 id: argocd-card
-                icon: si-argo
+                icon: sh-argo-cd.svg
                 href: https://k8s-lab2-argocd.eagle.corp/
                 description: "應用程式持續交付"
                 widget:
@@ -58,7 +58,7 @@ data:
                   allowInsecure: true
             - Rancher:
                 id: rancher-card
-                icon: mdi-kubernetes
+                icon: sh-rancher.svg
                 href: https://k8s-lab2-rancher.eagle.corp/
                 widget:
                   type: customapi
@@ -71,15 +71,15 @@ data:
                     - { field: pod_health, label: 叢集健康度 }
             - Grafana:
                 id: grafana-card
-                icon: si-grafana
+                icon: sh-grafana.svg
                 href: http://k8s-lab2-grafana.eagle.corp/
             - Prometheus:
                 id: prometheus-card
-                icon: si-prometheus
+                icon: sh-prometheus.svg
                 href: http://k8s-lab2-prometheus.eagle.corp/
             - Jenkins:
                 id: jenkins-card
-                icon: si-jenkins
+                icon: sh-jenkins.svg
                 href: http://k8s-lab2-jenkins.eagle.corp/
             - LAM:
                 id: lam-card
@@ -88,26 +88,26 @@ data:
         - 防火牆與網路設備:
             - FortiGate FW:
                 id: fortigate-card
-                icon: si-fortinet
+                icon: sh-fortinet.svg
                 href: https://10.8.28.11:54088
                 statusStyle: "dot"
                 ping: 10.8.28.11
             - PaloAlto FW:
                 id: paloalto-card
-                icon: si-paloaltonetworks
+                icon: sh-palo-alto-networks.svg
                 href: https://10.8.28.10
                 statusStyle: "dot"
                 ping: 10.8.28.10
             - Omada AP:
                 id: omada-card
-                icon: si-omadacloud
+                icon: sh-omada.svg
                 href: https://10.8.28.32
                 statusStyle: "dot"
                 ping: 10.8.28.32
                 description: "TP-Link Omada Controller"
             - Cloudflare:
                 id: cloudflare-card
-                icon: si-cloudflare
+                icon: sh-cloudflare.svg
                 href: https://dash.cloudflare.com/login
             - GoDaddy:
                 id: godaddy-card
@@ -128,7 +128,7 @@ data:
         - 虛擬化與雲端架構:
             - vCenter:
                 id: vcenter-card
-                icon: si-vmware
+                icon: sh-vmware-esx.svg
                 href: https://10.70.90.10/
                 statusStyle: "dot"
                 ping: 10.70.90.10
@@ -158,7 +158,7 @@ data:
                     - { field: esxi_10_70_90_16.mem, label: MEM, format: percent }
             - Synology-244:
                 id: nas244-card
-                icon: si-synology
+                icon: sh-synology.svg
                 href: http://10.8.100.244:5000
                 statusStyle: "dot"
                 widget:
@@ -168,7 +168,7 @@ data:
                   password: 'm:i(t''G4'
             - Synology-245:
                 id: nas245-card
-                icon: si-synology
+                icon: sh-synology.svg
                 href: http://10.8.100.245:5000
                 statusStyle: "dot"
                 widget:
@@ -180,7 +180,7 @@ data:
         - 運維監控與資產管理:
             - Uptime Kuma:
                 id: uptime-card
-                icon: si-uptimekuma
+                icon: sh-uptime-kuma.svg
                 href: https://uptime-kuma.eagle.corp/status/server-status
                 widget:
                   type: uptimekuma
@@ -193,7 +193,7 @@ data:
                     - { field: uptime, label: 可用率, format: percent }
             - LibreNMS:
                 id: librenms-card
-                icon: mdi-monitor-dashboard
+                icon: sh-librenms.svg
                 href: http://librenms.eagle.corp/
             - AssetTiger:
                 id: assettiger-card
@@ -202,7 +202,7 @@ data:
                 description: "資產管理系統"
             - Bitwarden:
                 id: bitwarden-card
-                icon: si-bitwarden
+                icon: sh-bitwarden.svg
                 href: https://vault.bitwarden.com/
                 description: "密碼庫"
         - 其他管理系統:
