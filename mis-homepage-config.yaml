@@ -88,13 +88,13 @@ data:
         - 防火牆與網路設備:
             - FortiGate FW:
                 id: fortigate-card
-                icon: sh-fortinet.svg
+                icon: sh-fortinet.webp
                 href: https://10.8.28.11:54088
                 statusStyle: "dot"
                 ping: 10.8.28.11
             - PaloAlto FW:
                 id: paloalto-card
-                icon: sh-palo-alto-networks.svg
+                icon: sh-palo-alto-networks.webp
                 href: https://10.8.28.10
                 statusStyle: "dot"
                 ping: 10.8.28.10
