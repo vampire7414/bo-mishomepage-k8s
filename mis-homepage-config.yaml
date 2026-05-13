@@ -134,7 +134,7 @@ data:
                 ping: 10.70.90.10
             - ESXi-12:
                 id: esxi12-card
-                icon: mdi-server
+                icon: sh-vmware-esx.svg
                 href: https://10.70.90.12/
                 statusStyle: "dot"
                 ping: 10.70.90.12
@@ -146,7 +146,7 @@ data:
                     - { field: esxi_10_70_90_12.mem, label: MEM, format: percent }
             - ESXi-16:
                 id: esxi16-card
-                icon: mdi-server
+                icon: sh-vmware-esx.svg
                 href: https://10.70.90.16/
                 statusStyle: "dot"
                 ping: 10.70.90.16
