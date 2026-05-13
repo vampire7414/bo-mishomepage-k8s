@@ -83,7 +83,7 @@ data:
                 href: http://k8s-lab2-jenkins.eagle.corp/
             - LAM:
                 id: lam-card
-                icon: mdi-account-cog
+                icon: sh-microsoft-azure.webp
                 href: http://k8s-lab2-lam.eagle.corp/
         - 防火牆與網路設備:
             - FortiGate FW:
@@ -114,7 +114,7 @@ data:
                 icon: si-godaddy-#ff9800
                 href: https://www.godaddy.com/zh
             - API 伺服器哨兵:
-                icon: sh-swagger.svg
+                icon: sh-swagger.webp
                 widget:
                   type: customapi
                   url: http://10.8.128.111:4999/scan
@@ -222,11 +222,11 @@ data:
                 description: "MX-2651 管理頁面"
             - AD Web-103:
                 id: ad103-card
-                icon: sh-microsoft-windows.svg
+                icon: sh-microsoft-windows.webp
                 href: http://10.8.128.103/
             - AD Web-105:
                 id: ad105-card
-                icon: sh-microsoft-windows.svg
+                icon: sh-microsoft-windows.webp
                 href: http://10.8.128.105/
 
   custom.css: |
