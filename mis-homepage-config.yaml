@@ -230,59 +230,58 @@ data:
                 href: http://10.8.128.105/
 
   custom.css: |
-    /* --- 1. 全域滾輪隱藏 --- */
+    /* --- 1. 全域背景與滾輪修正 --- */
     ::-webkit-scrollbar { display: none; }
-    body { -ms-overflow-style: none; scrollbar-width: none; }
+    body { 
+        -ms-overflow-style: none; 
+        scrollbar-width: none;
+        background-color: #1a1c23 !important; /* 強制底色，防止背景變色 */
+    }
 
-    /* --- 2. 圓角主樣式 (Master Rounded Corners) --- */
+    /* --- 2. 圓角與隔離層級 --- */
     .service-card, .bookmark-card, .group-header,
-    div[id$="-card"], div[id$="-card"] > div,
-    div[class*="rounded-lg"] {
+    div[id$="-card"], div[id$="-card"] > div {
         border-radius: 25px !important;
         overflow: hidden !important;
         isolation: isolate !important;
     }
 
-    /* --- 3. Rancher 專屬 RGB 流光燈條效果 --- */
+    /* --- 3. Rancher 專屬 RGB 流光燈條 --- */
     @keyframes rgb-flow {
-        0% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
-        33% { border-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
-        66% { border-color: #0000ff; box-shadow: 0 0 10px #0000ff; }
-        100% { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
+        0% { border-color: #ff0000; box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+        33% { border-color: #00ff00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
+        66% { border-color: #0000ff; box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); }
+        100% { border-color: #ff0000; box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
     }
 
-    #rancher-card {
+    /* 強制燈條選取器 */
+    div#rancher-card {
         border: 2px solid #ff0000 !important;
         animation: rgb-flow 4s linear infinite !important;
         transition: transform 0.3s ease !important;
     }
     
-    #rancher-card:hover {
-        transform: scale(1.03) !important;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) !important;
+    div#rancher-card:hover {
+        transform: scale(1.02) !important;
     }
 
-    /* --- 4. 卡片底層與著色設定 --- */
-    #argocd-card, #grafana-card, #prometheus-card, #jenkins-card, #lam-card,
-    #fortigate-card, #paloalto-card, #omada-card, #cloudflare-card, #godaddy-card,
-    #vcenter-card, #esxi12-card, #esxi16-card, #nas244-card, #nas245-card,
-    #uptime-card, #librenms-card, #assettiger-card, #bitwarden-card,
-    #pbx-card, #printer-card, #ad103-card, #ad105-card {
+    /* --- 4. 卡片內部背景色彩 (修正溢出問題) --- */
+    [id$="-card"] {
         position: relative !important;
-        background-color: transparent !important;
+        background-color: rgba(255, 255, 255, 0.03) !important;
     }
 
-    /* 建立彩色底層 */
     [id$="-card"]::before {
         content: "";
         position: absolute;
-        top: 2px;
-        left: 2px;
-        right: 2px;
-        bottom: 6px;
-        z-index: 0;
-        border-radius: 23px !important;
-        opacity: 0.2;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* 確保在底層 */
+        border-radius: 25px !important;
+        opacity: 0.15;
+        pointer-events: none;
     }
 
     /* --- 5. 服務顏色分配 --- */
@@ -293,25 +292,29 @@ data:
     #nas244-card::before, #nas245-card::before, #uptime-card::before { background-color: #10b981 !important; }
     #pbx-card::before, #printer-card::before, #ad103-card::before, #ad105-card::before, #bitwarden-card::before, #assettiger-card::before { background-color: #94a3b8 !important; }
 
-    /* --- 6. 狀態標籤與 PING 重新定位 --- */
-    .service-card > div { position: relative; z-index: 1; }
+    /* --- 6. 介面細節優化 --- */
+    .service-card > a, .service-card > div { position: relative; z-index: 2; }
+
     .service-ping .ping-status {
-        background-color: rgba(255, 255, 255, 0.08) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
         border-radius: 8px !important;
         position: absolute !important;
         top: 10px !important;
         right: 12px !important;
     }
 
-    /* --- 7. 系統監控漸層條 --- */
+    #tabs ul {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+        border-radius: 50px !important;
+    }
+
     .information-widget-resource div[style*="width"] {
-        background: linear-gradient(90deg, #4ade80 0%, #2dd4bf 40%, #3b82f6 75%, #b80fde 100%) !important;
-        opacity: 0.5 !important;
+        background: linear-gradient(90deg, #4ade80 0%, #3b82f6 100%) !important;
+        border-radius: 10px !important;
     }
 
     .service-name { color: #ffffff !important; font-weight: 700 !important; }
-    .service-description { color: rgba(255, 255, 255, 0.5) !important; }
 
   bookmarks.yaml: ""
   custom.yaml: ""
