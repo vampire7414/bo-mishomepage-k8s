@@ -111,10 +111,10 @@ data:
                 href: https://dash.cloudflare.com/login
             - GoDaddy:
                 id: godaddy-card
-                icon: si-godaddy
+                icon: si-godaddy-#ff9800
                 href: https://www.godaddy.com/zh
-            - 🛡️ API 伺服器哨兵:
-                icon: mdi-shield-check # 建議加個圖示比較美
+            - API 伺服器哨兵:
+                icon: sh-swagger.svg
                 widget:
                   type: customapi
                   url: http://10.8.128.111:4999/scan
@@ -197,7 +197,7 @@ data:
                 href: http://librenms.eagle.corp/
             - AssetTiger:
                 id: assettiger-card
-                icon: mdi-tag-multiple
+                icon: mdi-tag-multiple-#ff9800
                 href: https://www.assettiger.com/dashboard
                 description: "資產管理系統"
             - Bitwarden:
@@ -208,25 +208,25 @@ data:
         - 其他管理系統:
             - PBX 電話系統:
                 id: pbx-card
-                icon: mdi-phone-voip
+                icon: mdi-phone-voip-#4caf50
                 href: https://10.8.8.150:8088/
                 statusStyle: "dot"
                 ping: 10.8.8.150
                 description: "Yeastar S20 EAGLE"
             - Sharp 印表機:
                 id: printer-card
-                icon: mdi-printer-settings
+                icon: mdi-printer-settings-#ff9800
                 href: http://10.8.28.100
                 statusStyle: "dot"
                 ping: 10.8.28.100
                 description: "MX-2651 管理頁面"
             - AD Web-103:
                 id: ad103-card
-                icon: mdi-microsoft-windows
+                icon: sh-microsoft-windows.svg
                 href: http://10.8.128.103/
             - AD Web-105:
                 id: ad105-card
-                icon: mdi-microsoft-windows
+                icon: sh-microsoft-windows.svg
                 href: http://10.8.128.105/
 
   custom.css: |
