@@ -230,91 +230,102 @@ data:
                 href: http://10.8.128.105/
 
   custom.css: |
-    /* --- 1. 全域背景與滾輪修正 --- */
+    /* --- 1. 全域滾輪隱藏 (讓介面更像原生 App) --- */
     ::-webkit-scrollbar { display: none; }
-    body { 
-        -ms-overflow-style: none; 
-        scrollbar-width: none;
-        background-color: #1a1c23 !important; /* 強制底色，防止背景變色 */
-    }
+    body { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* --- 2. 圓角與隔離層級 --- */
+    /* --- 2. 圓角主樣式 (Master Rounded Corners) --- */
     .service-card, .bookmark-card, .group-header,
-    div[id$="-card"], div[id$="-card"] > div {
+    div[id$="-card"], div[id$="-card"] > div,
+    div[class*="rounded-lg"] {
         border-radius: 25px !important;
         overflow: hidden !important;
         isolation: isolate !important;
     }
 
-    /* --- 3. Rancher 專屬 RGB 流光燈條 --- */
-    @keyframes rgb-flow {
-        0% { border-color: #ff0000; box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
-        33% { border-color: #00ff00; box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); }
-        66% { border-color: #0000ff; box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); }
-        100% { border-color: #ff0000; box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
-    }
-
-    /* 強制燈條選取器 */
-    div#rancher-card {
-        border: 2px solid #ff0000 !important;
-        animation: rgb-flow 4s linear infinite !important;
-        transition: transform 0.3s ease !important;
-    }
-    
-    div#rancher-card:hover {
-        transform: scale(1.02) !important;
-    }
-
-    /* --- 4. 卡片內部背景色彩 (修正溢出問題) --- */
-    [id$="-card"] {
+    /* --- 3. 卡片著色容器設定 (維持您的緊湊結構) --- */
+    #argocd-card, #rancher-card, #grafana-card, #prometheus-card, #jenkins-card, #lam-card,
+    #fortigate-card, #paloalto-card, #omada-card, #cloudflare-card, #godaddy-card,
+    #vcenter-card, #esxi12-card, #esxi16-card, #nas244-card, #nas245-card,
+    #uptime-card, #librenms-card, #assettiger-card, #bitwarden-card,
+    #pbx-card, #printer-card, #ad103-card, #ad105-card {
         position: relative !important;
-        background-color: rgba(255, 255, 255, 0.03) !important;
+        background-color: transparent !important;
     }
 
+    /* 建立彩色底層 (優化：調低不透明度讓色彩更清透) */
     [id$="-card"]::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1; /* 確保在底層 */
-        border-radius: 25px !important;
-        opacity: 0.15;
-        pointer-events: none;
+        top: 2px;
+        left: 2px;
+        right: 2px;
+        bottom: 6px;
+        z-index: 0;
+        border-radius: 23px !important;
+        opacity: 0.2; /* 從 0.35 調降至 0.2，解決色塊感過重的問題 */
     }
 
-    /* --- 5. 服務顏色分配 --- */
+    /* --- 4. 服務顏色分配 (優化：採用現代 UI 科技色系) --- */
+    /* K8s 與 持續整合 (精緻紫) */
     #argocd-card::before, #rancher-card::before, #jenkins-card::before, #lam-card::before { background-color: #a855f7 !important; }
+    /* 監控與分析 (天空藍) */
     #grafana-card::before, #prometheus-card::before, #librenms-card::before { background-color: #3b82f6 !important; }
+    /* 網路安全 (科技紅) */
     #fortigate-card::before, #paloalto-card::before, #cloudflare-card::before, #godaddy-card::before { background-color: #f43f5e !important; }
+    /* 虛擬化平台 (琥珀橘) */
     #vcenter-card::before, #esxi12-card::before, #esxi16-card::before { background-color: #f59e0b !important; }
+    /* 儲存與監控狀態 (翡翠綠) */
     #nas244-card::before, #nas245-card::before, #uptime-card::before { background-color: #10b981 !important; }
+    /* 其他管理設備 (石板藍灰) */
     #pbx-card::before, #printer-card::before, #ad103-card::before, #ad105-card::before, #bitwarden-card::before, #assettiger-card::before { background-color: #94a3b8 !important; }
 
-    /* --- 6. 介面細節優化 --- */
-    .service-card > a, .service-card > div { position: relative; z-index: 2; }
+    /* --- 5. 狀態標籤與 PING 重新定位 (不動) --- */
+    .service-card > div { position: relative; z-index: 1; }
 
     .service-ping .ping-status {
-        background-color: rgba(255, 255, 255, 0.1) !important;
-        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        background-color: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
         border-radius: 8px !important;
+        padding: 2px 6px !important;
         position: absolute !important;
         top: 10px !important;
         right: 12px !important;
     }
 
-    #tabs ul {
-        background-color: rgba(255, 255, 255, 0.05) !important;
-        border-radius: 50px !important;
+    .service-ping .ping-status div {
+        font-size: 9px !important;
+        font-weight: 800 !important;
+        text-transform: uppercase !important;
     }
 
+    /* --- 6. 頂部導航欄美化 (不動) --- */
+    #tabs ul {
+        background-color: rgba(58, 58, 58, 0.2) !important;
+        border-radius: 50px !important;
+        padding: 4px !important;
+        width: fit-content !important;
+        margin: 0 auto !important;
+    }
+
+    #tabs ul li button[aria-selected="true"] {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: #6aabbf !important;
+        border-radius: 50px !important;
+        font-weight: bold !important;
+    }
+
+    /* --- 7. 系統監控漸層條 (不動) --- */
     .information-widget-resource div[style*="width"] {
-        background: linear-gradient(90deg, #4ade80 0%, #3b82f6 100%) !important;
+        background: linear-gradient(90deg, #4ade80 0%, #2dd4bf 40%, #3b82f6 75%, #b80fde 100%) !important;
+        opacity: 0.5 !important;
         border-radius: 10px !important;
     }
 
+    /* --- 8. 字體顏色微調 (不動) --- */
     .service-name { color: #ffffff !important; font-weight: 700 !important; }
+    .service-description { color: rgba(255, 255, 255, 0.5) !important; }
 
   bookmarks.yaml: ""
   custom.yaml: ""
+
