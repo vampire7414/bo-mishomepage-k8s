@@ -81,10 +81,11 @@ data:
                 id: jenkins-card
                 icon: sh-jenkins.svg
                 href: http://k8s-lab2-jenkins.eagle.corp/
-            - LAM:
+            - AD Web - Production (K8s):
                 id: lam-card
                 icon: sh-microsoft-azure.webp
                 href: http://k8s-lab2-lam.eagle.corp/
+                description: "K8s Container / 正式運行環境"
         - 防火牆與網路設備:
             - FortiGate FW:
                 id: fortigate-card
@@ -220,14 +221,16 @@ data:
                 statusStyle: "dot"
                 ping: 10.8.28.100
                 description: "MX-2651 管理頁面"
-            - AD Web-103:
+            - AD Web - Legacy Dev (103):
                 id: ad103-card
-                icon: sh-microsoft-windows.webp
+                icon: sh-microsoft-azure.webp
                 href: http://10.8.128.103/
-            - AD Web-105:
+                description: "Docker Compose / 原始開發 (一號機)"
+            - AD Web - Beta (105):
                 id: ad105-card
-                icon: sh-microsoft-windows.webp
+                icon: sh-microsoft-azure.webp
                 href: http://10.8.128.105/
+                description: "Docker Compose / 優化測試 (二號機)"
         - 帳號安全管理:
             - 密碼過期預警:
                 id: pwd-expiry-card
