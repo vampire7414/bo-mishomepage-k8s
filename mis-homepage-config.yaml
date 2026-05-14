@@ -16,7 +16,7 @@ data:
           header: false
       - 運維支援與周邊:
           style: row
-          columns: 2
+          columns: 3
           header: false
 
   kubernetes.yaml: |
@@ -228,13 +228,28 @@ data:
                 id: ad105-card
                 icon: sh-microsoft-windows.webp
                 href: http://10.8.128.105/
+        - 帳號安全管理:
+            - 密碼過期預警:
+                id: pwd-expiry-card
+                icon: mdi-key-alert-#f44336
+                widget:
+                  type: customapi
+                  url: http://k8s-lab2-lam.eagle.corp/api/user/expiring-passwords
+                  method: POST
+                  display: dynamic-list
+                  mappings:
+                    items: result
+                    name: SamAccountName
+                    label: Status
+                    format: text
+                    limit: 10
 
   custom.css: |
-    /* --- 1. 全域滾輪隱藏 (讓介面更像原生 App) --- */
+    /* --- 1. 全域滾輪隱藏 --- */
     ::-webkit-scrollbar { display: none; }
     body { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* --- 2. 圓角主樣式 (Master Rounded Corners) --- */
+    /* --- 2. 圓角主樣式 --- */
     .service-card, .bookmark-card, .group-header,
     div[id$="-card"], div[id$="-card"] > div,
     div[class*="rounded-lg"] {
@@ -243,17 +258,17 @@ data:
         isolation: isolate !important;
     }
 
-    /* --- 3. 卡片著色容器設定 (維持您的緊湊結構) --- */
+    /* --- 3. 卡片著色容器設定 --- */
     #argocd-card, #rancher-card, #grafana-card, #prometheus-card, #jenkins-card, #lam-card,
     #fortigate-card, #paloalto-card, #omada-card, #cloudflare-card, #godaddy-card,
     #vcenter-card, #esxi12-card, #esxi16-card, #nas244-card, #nas245-card,
     #uptime-card, #librenms-card, #assettiger-card, #bitwarden-card,
-    #pbx-card, #printer-card, #ad103-card, #ad105-card {
+    #pbx-card, #printer-card, #ad103-card, #ad105-card, #pwd-expiry-card {
         position: relative !important;
         background-color: transparent !important;
     }
 
-    /* 建立彩色底層 (優化：調低不透明度讓色彩更清透) */
+    /* 建立彩色底層 (關鍵修正：pointer-events: none 解決點擊問題) */
     [id$="-card"]::before {
         content: "";
         position: absolute;
@@ -263,16 +278,17 @@ data:
         bottom: 6px;
         z-index: 0;
         border-radius: 23px !important;
-        opacity: 0.2; /* 從 0.35 調降至 0.2，解決色塊感過重的問題 */
+        opacity: 0.2;
+        pointer-events: none !important; /* 讓點擊直接穿透到底層連結 */
     }
 
-    /* --- 4. 服務顏色分配 (優化：採用現代 UI 科技色系) --- */
+    /* --- 4. 服務顏色分配 --- */
     /* K8s 與 持續整合 (精緻紫) */
     #argocd-card::before, #rancher-card::before, #jenkins-card::before, #lam-card::before { background-color: #a855f7 !important; }
     /* 監控與分析 (天空藍) */
     #grafana-card::before, #prometheus-card::before, #librenms-card::before { background-color: #3b82f6 !important; }
-    /* 網路安全 (科技紅) */
-    #fortigate-card::before, #paloalto-card::before, #cloudflare-card::before, #godaddy-card::before { background-color: #f43f5e !important; }
+    /* 網路安全與過期警告 (科技紅) */
+    #fortigate-card::before, #paloalto-card::before, #cloudflare-card::before, #godaddy-card::before, #pwd-expiry-card::before { background-color: #f43f5e !important; }
     /* 虛擬化平台 (琥珀橘) */
     #vcenter-card::before, #esxi12-card::before, #esxi16-card::before { background-color: #f59e0b !important; }
     /* 儲存與監控狀態 (翡翠綠) */
@@ -280,8 +296,11 @@ data:
     /* 其他管理設備 (石板藍灰) */
     #pbx-card::before, #printer-card::before, #ad103-card::before, #ad105-card::before, #bitwarden-card::before, #assettiger-card::before { background-color: #94a3b8 !important; }
 
-    /* --- 5. 狀態標籤與 PING 重新定位 (不動) --- */
-    .service-card > div { position: relative; z-index: 1; }
+    /* --- 5. 確保內容層級 --- */
+    .service-card > div, .service-card > a {
+        position: relative !important;
+        z-index: 1 !important;
+    }
 
     .service-ping .ping-status {
         background-color: rgba(255, 255, 255, 0.08) !important;
@@ -299,7 +318,7 @@ data:
         text-transform: uppercase !important;
     }
 
-    /* --- 6. 頂部導航欄美化 (不動) --- */
+    /* --- 6. 頂部導航欄美化 --- */
     #tabs ul {
         background-color: rgba(58, 58, 58, 0.2) !important;
         border-radius: 50px !important;
@@ -315,17 +334,16 @@ data:
         font-weight: bold !important;
     }
 
-    /* --- 7. 系統監控漸層條 (不動) --- */
+    /* --- 7. 系統監控漸層條 --- */
     .information-widget-resource div[style*="width"] {
         background: linear-gradient(90deg, #4ade80 0%, #2dd4bf 40%, #3b82f6 75%, #b80fde 100%) !important;
         opacity: 0.5 !important;
         border-radius: 10px !important;
     }
 
-    /* --- 8. 字體顏色微調 (不動) --- */
+    /* --- 8. 字體顏色微調 --- */
     .service-name { color: #ffffff !important; font-weight: 700 !important; }
     .service-description { color: rgba(255, 255, 255, 0.5) !important; }
 
   bookmarks.yaml: ""
   custom.yaml: ""
-
